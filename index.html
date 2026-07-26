@@ -3,276 +3,246 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Xác nhận hoàn thành nghĩa vụ nộp thuế</title>
+    <title>Tra Cứu Thông Tin Tài Khoản NSNN - Hải Quan KV2</title>
     <style>
-        /* CSS CHUNG - THEME "HIỆN ĐẠI & KÍNH MỜ" (GLASSMORPHISM) */
-        body { 
-            font-family: Arial, sans-serif; 
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); 
+        /* Nền trang web */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
             background-attachment: fixed;
-            margin: 0; padding: 10px; color: #333; 
-            display: flex; flex-direction: column; min-height: 100vh; 
+            margin: 0;
+            padding: 20px;
+            color: #fff;
+            min-height: 100vh;
+            box-sizing: border-box;
         }
-        .main-container { width: 100%; max-width: 1000px; margin: auto; box-sizing: border-box; flex: 1; display: flex; flex-direction: column; }
-        
-        /* HEADER - HIỆU ỨNG KÍNH MỜ */
-        header { 
-            background: rgba(25, 118, 210, 0.85);
-            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            color: white; padding: 20px 10px; border-radius: 16px; 
-            border: 1px solid rgba(255, 255, 255, 0.2); margin-bottom: 20px; 
-            text-align: center; box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); 
-        } 
-        
-        .logo-area { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 15px; gap: 5px; }
-        .logo-box { flex: 0 0 55px; display: flex; justify-content: center; align-items: center; }
-        .unit-info { flex: 1; text-align: center; min-width: 0; }
-        
-        .unit-info h3 { margin: 0; font-weight: bold; white-space: nowrap; font-size: clamp(12px, 4vw, 16px); letter-spacing: 0.5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
-        .unit-info p { margin: 4px 0 0 0; font-weight: bold; opacity: 0.9; white-space: nowrap; font-size: clamp(10px, 3.5vw, 14px); }
 
-        .logo-left, .logo-right { width: 100%; max-width: 65px; object-fit: contain; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        /* Khối giao diện kính mờ (Glassmorphism) */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 30px;
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
 
-        .title-area h1 { color: #ffe082; margin: 0 0 15px 0; font-size: clamp(16px, 4vw, 22px); line-height: 1.4; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); text-transform: uppercase; }
+        /* Tiêu đề & Nút bấm */
+        .header { text-align: center; margin-bottom: 25px; }
+        .header h1 { margin: 0 0 15px 0; font-size: 26px; text-transform: uppercase; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); line-height: 1.4; }
         
-        /* THANH TÌM KIẾM */
-        .search-bar { 
-            background: rgba(255, 255, 255, 0.95); color: #444; padding: 14px 20px; 
-            border-radius: 50px; border: 1px solid rgba(255, 255, 255, 0.8); 
-            display: flex; align-items: center; margin-bottom: 10px;
-            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05), 0 4px 10px rgba(0,0,0,0.1);
-        }
-        .search-bar input { border: none; outline: none; flex-grow: 1; font-size: 15px; width: 100%; background: transparent; }
-        
-        /* NÚT HÀNH ĐỘNG (CALL TO ACTION) */
-        .action-buttons {
-            display: flex; gap: 15px; justify-content: center; flex-wrap: wrap; margin-bottom: 25px;
-        }
-        .btn-action {
-            padding: 12px 20px; border-radius: 50px; font-weight: bold; font-size: 14px;
-            text-decoration: none; color: white; display: inline-flex; align-items: center; gap: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.15); transition: all 0.3s ease; border: 1px solid rgba(255,255,255,0.2);
-        }
-        .btn-tracuu { background: linear-gradient(135deg, #e65100, #ff8f00); }
-        .btn-dienform { background: linear-gradient(135deg, #2e7d32, #43a047); }
-        .btn-action:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(0,0,0,0.25); color: white; }
+        .action-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 25px; }
+        .btn { padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: bold; transition: all 0.3s; font-size: 15px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px;}
+        .btn-primary { background: #fff; color: #1976d2; box-shadow: 0 4px 15px rgba(255,255,255,0.2); }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255,255,255,0.4); }
+        .btn-outline { background: transparent; color: #fff; border: 2px solid #fff; }
+        .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
 
-        /* DANH BẠ TÀI KHOẢN DẠNG CARD */
-        .nsnn-container { margin-bottom: 30px; }
-        .nsnn-grid {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 15px;
+        /* Ô tìm kiếm */
+        .search-box {
+            width: 100%;
+            padding: 16px 20px;
+            border-radius: 12px;
+            border: none;
+            background: rgba(255,255,255,0.95);
+            font-size: 16px;
+            margin-bottom: 25px;
+            box-sizing: border-box;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            outline: none;
+            transition: 0.3s;
         }
-        .nsnn-card {
-            background: rgba(255, 255, 255, 0.75); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border-radius: 16px; padding: 18px; border: 1px solid rgba(255, 255, 255, 1);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.06); transition: all 0.3s;
+        .search-box:focus { box-shadow: 0 0 0 3px rgba(255,255,255,0.5); }
+
+        /* Lưới dữ liệu */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 20px;
         }
-        .nsnn-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.1); background: rgba(255, 255, 255, 0.9); }
+        .card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 12px;
+            padding: 20px;
+            color: #333;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            transition: 0.3s;
+            border-left: 6px solid #1976d2;
+            position: relative;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
         
-        .card-header {
-            display: flex; justify-content: space-between; align-items: center;
-            border-bottom: 2px solid rgba(25, 118, 210, 0.2); padding-bottom: 10px; margin-bottom: 12px;
-        }
-        .hq-name { font-size: 15px; font-weight: 900; color: #1976d2; margin: 0; text-transform: uppercase; line-height: 1.3;}
-        .hq-code { font-size: 11px; background: #e3f2fd; color: #0d47a1; padding: 4px 8px; border-radius: 6px; font-weight: bold; border: 1px solid #bbdefb; flex-shrink: 0; margin-left: 10px;}
+        .card h3 { margin: 0 0 15px 0; color: #1976d2; font-size: 17px; line-height: 1.4; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; display: flex; align-items: flex-start; gap: 8px;}
+        .stt-badge { background: #1976d2; color: #fff; padding: 2px 8px; border-radius: 6px; font-size: 14px; }
         
-        .info-row { display: flex; justify-content: space-between; font-size: 13.5px; margin-bottom: 8px; border-bottom: 1px dashed rgba(0,0,0,0.08); padding-bottom: 6px; align-items: flex-start;}
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #e0e0e0; padding-bottom: 6px; }
         .info-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
-        .info-label { color: #555; font-weight: bold; flex: 0 0 45%; }
-        .info-value { color: #222; text-align: right; flex: 1; word-break: break-word; font-weight: 500;}
-        
-        .highlight-value { color: #d32f2f; font-weight: 900; font-size: 14.5px; }
-        .bank-value { color: #2e7d32; font-weight: bold; }
-        .stt-badge { color: #e65100; font-weight: 900; margin-right: 4px; }
+        .info-label { font-weight: 600; color: #555; }
+        .info-value { text-align: right; max-width: 60%; word-break: break-word; color: #111; font-weight: 500; }
+        .highlight { color: #d32f2f; font-weight: 700; font-size: 15px; }
 
-        #loading { text-align: center; font-size: 16px; color: #1976d2; padding: 30px; font-weight: bold; }
+        #loading { text-align: center; font-size: 18px; padding: 30px; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 10px;}
 
-        /* FOOTER */
-        footer { 
-            background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.9); border-radius: 16px; 
-            padding: 15px; margin: auto 0 10px 0; display: flex; flex-direction: column; gap: 15px; 
-            box-shadow: 0 8px 32px rgba(0,0,0,0.08); 
-        }
-        .footer-logo { height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
-
-        @media (max-width: 650px) {
-            .btn-action { width: 100%; justify-content: center; }
-            .nsnn-grid { grid-template-columns: 1fr; }
-        }
+        /* Footer */
+        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); }
+        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; }
+        .counter-box { background: rgba(0,0,0,0.2); padding: 8px 15px; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
+        .location { text-align: center; font-size: 13px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; }
+        .location a { color: #fff; text-decoration: none; }
+        .location a:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
-    <div class="main-container">
-        
-        <header>
-            <div class="logo-area">
-                <div class="logo-box"><img src="logo-hq.png" alt="Logo HQ" class="logo-left" onerror="this.style.display='none'"></div>
-                <div class="unit-info">
-                    <h3>CỤC HẢI QUAN</h3>
-                    <p>CHI CỤC HẢI QUAN KHU VỰC II</p>
-                </div>
-                <div class="logo-box"><img src="logo-hqkv2.png" alt="Logo HQKV2" class="logo-right" onerror="this.style.display='none'"></div>
+
+<div class="glass-panel">
+    
+    <div class="header">
+        <h1>Tra Cứu Thông Tin Tài Khoản NSNN<br>Chi Cục Hải Quan Khu Vực II</h1>
+    </div>
+
+    <!-- Nút chức năng -->
+    <div class="action-buttons">
+        <a href="#" class="btn btn-primary">🔍 Tra cứu nợ thuế</a>
+        <a href="#" class="btn btn-outline">📝 Nộp mẫu 56</a>
+    </div>
+
+    <!-- Thanh tìm kiếm -->
+    <input type="text" id="search-input" class="search-box" placeholder="🔍 Nhập từ khóa để tìm kiếm (Tên hải quan, mã đơn vị, ký hiệu TK, mã NH...)">
+
+    <!-- Khu vực hiển thị dữ liệu -->
+    <div id="loading">⏳ Đang tải dữ liệu, vui lòng chờ trong giây lát...</div>
+    <div id="nsnn-grid" class="grid-container" style="display: none;"></div>
+
+    <!-- Footer & Bộ đếm -->
+    <footer>
+        <div class="footer-content">
+            <div style="font-weight: bold; font-size: 14px;">
+                © Sản phẩm của Đoàn thanh niên<br>Chi cục Hải quan khu vực II
             </div>
             
-            <div class="title-area">
-                <h1>THÔNG TIN XÁC NHẬN HOÀN THÀNH<br>NGHĨA VỤ NỘP THUẾ</h1>
-            </div>
-
-            <!-- NÚT HÀNH ĐỘNG -->
-            <div class="action-buttons">
-                <a href="http://customs.gov.vn:8228/index.jsp?pageId=140&cid=1198" target="_blank" rel="noopener" class="btn-action btn-tracuu">
-                    <span style="font-size: 18px;">🔎</span> Tra cứu nợ thuế tại đây
+            <div class="counter-box">
+                <span style="font-size: 12px; font-weight: bold; text-transform: uppercase;">Lượt truy cập:</span>
+                <!-- BỘ ĐẾM HITWEBCOUNTER CỦA BẠN (Mã 21511758) -->
+                <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener" title="Website">
+                    <img src="https://www.hitwebcounter.com/counter/counter.php?page=21511758&amp;style=0025&amp;nbdigits=5&amp;type=page" alt="Website" decoding="async" style="border:0; height: 22px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));" />
                 </a>
-                <a href="https://forms.gle/bBLS2qcfnzzQA23S7" target="_blank" rel="noopener" class="btn-action btn-dienform">
-                    <span style="font-size: 18px;">📝</span> Điền để lấy và in thông tin theo mẫu 56
-                </a>
-            </div>
-
-            <div class="search-bar">
-                <input type="text" id="search-input" placeholder="🔍 Nhập Tên CQ Hải Quan, Mã KBNN, Mã Ngân hàng...">
-            </div>
-            <div style="font-size: 12px; color: rgba(255,255,255,0.9); margin-top: 5px; text-align: center; font-style: italic;">
-                Tra cứu nhanh thông tin tài khoản thu Ngân Sách Nhà Nước (NSNN)
-            </div>
-        </header>
-
-        <div id="loading">⏳ Đang tải dữ liệu danh bạ NSNN...</div>
-        
-        <!-- KHU VỰC HIỂN THỊ THẺ NSNN -->
-        <div class="nsnn-container" id="nsnn-container" style="display: none;">
-            <div class="nsnn-grid" id="nsnn-grid">
-                <!-- Dữ liệu sẽ được JS đổ vào đây -->
             </div>
         </div>
+        
+        <div class="location">
+            <a href="https://maps.app.goo.gl/fGw6eB8g49TQrmxs6">
+                📍 Số 02 Hàm Nghi, Phường Sài Gòn, Thành phố Hồ Chí Minh
+            </a>
+        </div>
+    </footer>
 
-        <!-- FOOTER -->
-        <footer>
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
-                <div style="display: flex; align-items: center; justify-content: flex-start; gap: 15px;">
-                    <img src="Logo-doan.png" alt="Logo Đoàn" class="footer-logo" onerror="this.style.display='none'">
-                    <p style="margin: 0; font-weight: bold; color: #1976d2; text-align: left; font-size: 13px;">
-                        Một sản phẩm của Đoàn thanh niên<br>Chi cục Hải quan khu vực II
-                    </p>
+</div>
+
+<script>
+    // ==========================================
+    // 1. DÁN ĐƯỜNG LINK API CỦA BẠN VÀO DƯỚI ĐÂY
+    // ==========================================
+    const API_URL = "https://script.google.com/macros/s/AKfycbzuVEIS8wBt8jcav6WE-wex_d_uAWkq1vv5iJPo06ecbgBfZjNF2N0UTY2JB7f6bSlENg/exec"; 
+    
+    let globalData = [];
+
+    // Hàm loại bỏ dấu tiếng Việt để tìm kiếm dễ dàng hơn
+    function removeAccents(str) {
+        if(!str) return "";
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
+    }
+
+    // Hàm vẽ giao diện thẻ (Card)
+    function renderData(dataArray) {
+        const container = document.getElementById('nsnn-grid');
+        let html = "";
+        
+        if(!dataArray || dataArray.length === 0) {
+            container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: rgba(255,255,255,0.9); border-radius: 12px; color: #333;">
+                <span style="font-size: 40px;">🔍</span><br><br>Không tìm thấy thông tin tài khoản phù hợp với từ khóa của bạn.
+            </div>`;
+            return;
+        }
+
+        dataArray.forEach(item => {
+            html += `
+            <div class="card">
+                <h3><span class="stt-badge">#${item.stt || '-'}</span> ${item.coQuanHaiQuan || 'Chưa cập nhật'}</h3>
+                
+                <div class="info-row">
+                    <span class="info-label">Mã Đơn vị:</span>
+                    <span class="info-value">${item.maDonVi || '-'}</span>
                 </div>
-            </div>
-            <div style="border-top: 1px solid rgba(25, 118, 210, 0.1); padding-top: 12px; text-align: center; width: 100%;">
-                <a href="https://maps.app.goo.gl/9mAUxfHJNd419zzo6" target="_blank" rel="noopener" style="color: #1976d2; text-decoration: none; font-size: 12px; display: inline-flex; align-items: center; justify-content: center; gap: 4px; font-weight: bold; padding: 6px 12px; background: rgba(255,255,255,0.7); border-radius: 12px; border: 1px solid rgba(25, 118, 210, 0.2); width: 100%; box-sizing: border-box;">
-                    📍 Cổng B khu cảng Cát Lái, số 02 Lê Phụng Hiểu, P. Cát Lái, TP. Thủ Đức, TP.HCM
-                </a>
-            </div>
-        </footer>
-
-    </div> 
-
-    <script>
-        // Dữ liệu mẫu khớp 100% với 9 cột trong Google Sheets của bạn
-        let globalData = [
-            {
-                "stt": "1",
-                "coQuanHaiQuan": "Hải quan KV2",
-                "maDonVi": "02CI",
-                "kyHieuTK": "7111",
-                "tenTaiKhoan": "Chi cục HQ Cửa khẩu Cảng SG KV2",
-                "maCQThu": "1056581",
-                "maKBNN": "0011",
-                "maNH": "002233",
-                "tenKBNN": "KBNN TP. Thủ Đức"
-            },
-            {
-                "stt": "2",
-                "coQuanHaiQuan": "Hải quan SB Tân Sơn Nhất",
-                "maDonVi": "02BA",
-                "kyHieuTK": "7111",
-                "tenTaiKhoan": "Chi cục HQ Cửa khẩu SB Quốc tế TSN",
-                "maCQThu": "1056500",
-                "maKBNN": "0012",
-                "maNH": "004455",
-                "tenKBNN": "KBNN Quận Tân Bình"
-            }
-        ];
-
-        function removeAccents(str) {
-            if(!str) return "";
-            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D');
-        }
-
-        function renderData(dataArray) {
-            let container = document.getElementById('nsnn-grid');
-            let html = "";
-            
-            if(!dataArray || dataArray.length === 0) {
-                container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; color: #666; background: rgba(255,255,255,0.7); border-radius: 12px;">
-                    <span style="font-size: 30px;">🔍</span><br><br>Không tìm thấy thông tin tài khoản phù hợp.
-                </div>`;
-                return;
-            }
-
-            dataArray.forEach(item => {
-                html += `
-                <div class="nsnn-card">
-                    <div class="card-header">
-                        <h4 class="hq-name"><span class="stt-badge">#${item.stt}</span> ${item.coQuanHaiQuan}</h4>
-                        <span class="hq-code">Mã ĐV: ${item.maDonVi}</span>
-                    </div>
-                    
-                    <div class="info-row">
-                        <span class="info-label">Ký hiệu tài khoản:</span>
-                        <span class="info-value highlight-value">${item.kyHieuTK}</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Tên tài khoản KB:</span>
-                        <span class="info-value">${item.tenTaiKhoan}</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Mã cơ quan thu:</span>
-                        <span class="info-value">${item.maCQThu}</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Tên KBNN:</span>
-                        <span class="info-value bank-value">${item.tenKBNN}</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Mã KBNN:</span>
-                        <span class="info-value">${item.maKBNN}</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Mã Ngân hàng:</span>
-                        <span class="info-value">${item.maNH}</span>
-                    </div>
-                </div>`;
-            });
-            container.innerHTML = html;
-        }
-
-        // Logic Tìm kiếm qua 9 trường dữ liệu
-        document.getElementById('search-input').addEventListener('input', function(e) {
-            let kwClean = removeAccents(e.target.value.toLowerCase()).trim();
-            
-            if (!kwClean) {
-                renderData(globalData);
-                return;
-            }
-
-            let filtered = globalData.filter(item => {
-                let textToSearch = removeAccents(`
-                    ${item.stt} ${item.coQuanHaiQuan} ${item.maDonVi} ${item.kyHieuTK} 
-                    ${item.tenTaiKhoan} ${item.maCQThu} ${item.maKBNN} 
-                    ${item.maNH} ${item.tenKBNN}
-                `.toLowerCase());
-                return textToSearch.includes(kwClean);
-            });
-            
-            renderData(filtered);
+                <div class="info-row">
+                    <span class="info-label">Ký hiệu TK:</span>
+                    <span class="info-value highlight">${item.kyHieuTK || '-'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Tên tài khoản KB:</span>
+                    <span class="info-value">${item.tenTaiKhoan || '-'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Mã cơ quan thu:</span>
+                    <span class="info-value">${item.maCQThu || '-'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Tên KBNN:</span>
+                    <span class="info-value" style="color: #1565c0; font-weight: bold;">${item.tenKBNN || '-'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Mã KBNN:</span>
+                    <span class="info-value">${item.maKBNN || '-'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Mã Ngân hàng:</span>
+                    <span class="info-value">${item.maNH || '-'}</span>
+                </div>
+            </div>`;
         });
+        
+        container.innerHTML = html;
+    }
 
-        // Giả lập tải dữ liệu thành công (Khi kết nối sheets thật sẽ thay phần này bằng fetch)
-        setTimeout(() => {
-            document.getElementById('loading').style.display = 'none';
-            document.getElementById('nsnn-container').style.display = 'block';
+    // Xử lý sự kiện khi gõ vào ô tìm kiếm
+    document.getElementById('search-input').addEventListener('input', function(e) {
+        const kwClean = removeAccents(e.target.value).trim();
+        
+        if (!kwClean) {
             renderData(globalData);
-        }, 500);
+            return;
+        }
 
-    </script>
+        const filtered = globalData.filter(item => {
+            const textToSearch = removeAccents(`
+                ${item.stt} ${item.coQuanHaiQuan} ${item.maDonVi} ${item.kyHieuTK} 
+                ${item.tenTaiKhoan} ${item.maCQThu} ${item.maKBNN} 
+                ${item.maNH} ${item.tenKBNN}
+            `);
+            return textToSearch.includes(kwClean);
+        });
+        
+        renderData(filtered);
+    });
+
+    // ==========================================
+    // 2. LẤY DỮ LIỆU TỪ GOOGLE SHEETS
+    // ==========================================
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            globalData = data;
+            document.getElementById('loading').style.display = 'none'; // Ẩn chữ đang tải
+            document.getElementById('nsnn-grid').style.display = 'grid'; // Hiện khung dữ liệu
+            renderData(globalData);
+        })
+        .catch(error => {
+            console.error("Lỗi tải dữ liệu:", error);
+            document.getElementById('loading').innerHTML = "❌ Lỗi: Không thể kết nối đến cơ sở dữ liệu. Vui lòng kiểm tra lại link API.";
+        });
+</script>
+
 </body>
 </html>
