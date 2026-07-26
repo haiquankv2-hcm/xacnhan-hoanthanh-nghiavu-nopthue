@@ -3,137 +3,194 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tra Cứu Thông Tin Tài Khoản NSNN - Hải Quan KV2</title>
+    <title>Hướng dẫn Tra Cứu Thông Tin Đề Nghị Xác Nhận Hoàn Thành Nghĩa Vụ Nộp Thuế - Chi cục Hải Quan KV II</title>
     <style>
-        /* Nền trang web */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+        /* =========================================
+           CSS CHUNG - THEME "KÍNH MỜ" (GLASSMORPHISM)
+           ========================================= */
+        body { 
+            font-family: Arial, sans-serif; 
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); 
             background-attachment: fixed;
-            margin: 0;
-            padding: 20px;
-            color: #fff;
-            min-height: 100vh;
-            box-sizing: border-box;
+            margin: 0; 
+            padding: 10px; 
+            color: #333; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
         }
-
-        /* Khối giao diện kính mờ (Glassmorphism) */
-        .glass-panel {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 30px;
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Tiêu đề & Nút bấm */
-        .header { text-align: center; margin-bottom: 25px; }
-        .header h1 { margin: 0 0 15px 0; font-size: 26px; text-transform: uppercase; text-shadow: 1px 1px 3px rgba(0,0,0,0.5); line-height: 1.4; }
+        .main-container { width: 100%; max-width: 1200px; margin: auto; box-sizing: border-box; flex: 1; display: flex; flex-direction: column; }
         
-        .action-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 25px; }
-        .btn { padding: 12px 24px; border-radius: 10px; text-decoration: none; font-weight: bold; transition: all 0.3s; font-size: 15px; cursor: pointer; border: none; display: flex; align-items: center; gap: 8px;}
-        .btn-primary { background: #fff; color: #1976d2; box-shadow: 0 4px 15px rgba(255,255,255,0.2); }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 6px 20px rgba(255,255,255,0.4); }
-        .btn-outline { background: transparent; color: #fff; border: 2px solid #fff; }
-        .btn-outline:hover { background: rgba(255,255,255,0.1); transform: translateY(-3px); }
+        /* HEADER - HIỆU ỨNG KÍNH MỜ XANH */
+        header { 
+            background: rgba(25, 118, 210, 0.85);
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            color: white; 
+            padding: 20px 10px; 
+            border-radius: 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            margin-bottom: 20px; 
+            text-align: center; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); 
+        } 
+        
+        .logo-area { display: flex; align-items: center; justify-content: space-between; width: 100%; margin-bottom: 15px; gap: 5px; }
+        .logo-box { flex: 0 0 55px; display: flex; justify-content: center; align-items: center; }
+        .unit-info { flex: 1; text-align: center; min-width: 0; }
+        
+        .unit-info h3 { margin: 0; font-weight: bold; white-space: nowrap; font-size: clamp(11px, 3.8vw, 15px); letter-spacing: 0.5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        .unit-info p { margin: 4px 0 0 0; font-weight: bold; opacity: 0.9; white-space: nowrap; font-size: clamp(9px, 3vw, 12px); }
 
-        /* Ô tìm kiếm */
-        .search-box {
-            width: 100%;
-            padding: 16px 20px;
-            border-radius: 12px;
-            border: none;
-            background: rgba(255,255,255,0.95);
-            font-size: 16px;
-            margin-bottom: 25px;
-            box-sizing: border-box;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            outline: none;
-            transition: 0.3s;
+        .logo-left { width: 100%; max-width: 65px; object-fit: contain; transform: scale(1.15); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        .logo-right { width: 100%; max-width: 65px; object-fit: contain; transform: scale(0.9); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+
+        .title-area h1 { color: #ffe082; margin: 0 0 15px 0; font-size: 20px; line-height: 1.3; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        
+        /* THANH TÌM KIẾM TRONG HEADER */
+        .search-bar { 
+            background: rgba(255, 255, 255, 0.9); 
+            color: #444; 
+            padding: 14px 18px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.8); 
+            display: flex; 
+            align-items: center; 
+            margin-bottom: 10px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto 10px auto;
         }
-        .search-box:focus { box-shadow: 0 0 0 3px rgba(255,255,255,0.5); }
+        .search-bar input { border: none; outline: none; flex-grow: 1; font-size: 15px; width: 100%; background: transparent; }
+        
+        /* NÚT CHỨC NĂNG */
+        .action-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 25px; }
+        .btn { padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: all 0.3s; font-size: 14px; cursor: pointer; border: 1px solid rgba(255,255,255,0.8); display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);}
+        .btn-primary { background: rgba(25, 118, 210, 0.95); color: #fff; border: none;}
+        .btn-primary:hover { background: rgba(21, 101, 192, 1); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(25, 118, 210, 0.3);}
+        .btn-outline { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(8px); color: #1976d2; }
+        .btn-outline:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
 
-        /* Lưới dữ liệu */
+        /* KHU VỰC LƯỚI DATA NSNN */
         .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 20px;
         }
+        
+        /* THẺ HIỂN THỊ - KÍNH MỜ TRẮNG */
         .card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-radius: 16px;
             padding: 20px;
             color: #333;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
             transition: 0.3s;
-            border-left: 6px solid #1976d2;
+            border: 1px solid rgba(255, 255, 255, 1);
             position: relative;
+            overflow: hidden;
         }
-        .card:hover { transform: translateY(-5px); box-shadow: 0 8px 25px rgba(0,0,0,0.3); }
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 6px; height: 100%;
+            background: #1976d2;
+        }
+        .card:hover { transform: translateY(-5px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); }
         
-        .card h3 { margin: 0 0 15px 0; color: #1976d2; font-size: 17px; line-height: 1.4; border-bottom: 2px solid #f0f0f0; padding-bottom: 10px; display: flex; align-items: flex-start; gap: 8px;}
-        .stt-badge { background: #1976d2; color: #fff; padding: 2px 8px; border-radius: 6px; font-size: 14px; }
+        .card h3 { margin: 0 0 15px 0; color: #1976d2; font-size: 16px; line-height: 1.4; border-bottom: 1px solid rgba(25, 118, 210, 0.2); padding-bottom: 10px; display: flex; align-items: flex-start; gap: 8px;}
+        .stt-badge { background: #1976d2; color: #fff; padding: 2px 8px; border-radius: 6px; font-size: 13px; box-shadow: 0 2px 5px rgba(0,0,0,0.2);}
         
-        .info-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; border-bottom: 1px dashed #e0e0e0; padding-bottom: 6px; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; border-bottom: 1px dashed rgba(0,0,0,0.1); padding-bottom: 6px; }
         .info-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .info-label { font-weight: 600; color: #555; }
-        .info-value { text-align: right; max-width: 60%; word-break: break-word; color: #111; font-weight: 500; }
-        .highlight { color: #d32f2f; font-weight: 700; font-size: 15px; }
+        .info-value { text-align: right; max-width: 60%; word-break: break-word; color: #111; font-weight: bold; }
+        .highlight { color: #d32f2f; font-weight: 900; font-size: 15px; }
 
-        #loading { text-align: center; font-size: 18px; padding: 30px; font-weight: bold; display: flex; justify-content: center; align-items: center; gap: 10px;}
+        #loading { text-align: center; font-size: 16px; color: #1976d2; padding: 30px; font-weight: bold; }
 
-        /* Footer */
-        footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.2); }
-        .footer-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px; margin-bottom: 15px; }
-        .counter-box { background: rgba(0,0,0,0.2); padding: 8px 15px; border-radius: 8px; display: flex; align-items: center; gap: 10px; }
-        .location { text-align: center; font-size: 13px; background: rgba(0,0,0,0.2); padding: 10px; border-radius: 8px; }
-        .location a { color: #fff; text-decoration: none; }
-        .location a:hover { text-decoration: underline; }
+        /* FOOTER ĐOÀN THANH NIÊN - KÍNH MỜ TRẮNG */
+        footer { 
+            background: rgba(255, 255, 255, 0.65); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9); 
+            border-radius: 16px; 
+            padding: 15px; 
+            margin: 30px 0 10px 0; 
+            display: flex; 
+            flex-direction: column;
+            gap: 15px; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08); 
+        }
+        .footer-logo { height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
     </style>
 </head>
 <body>
 
-<div class="glass-panel">
+<div class="main-container">
     
-    <div class="header">
-        <h1>Tra Cứu Thông Tin Tài Khoản NSNN<br>Chi Cục Hải Quan Khu Vực II</h1>
-    </div>
+    <!-- HEADER -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-box">
+                <!-- Chú ý cần có file logo-hq.png trong thư mục của bạn -->
+                <img src="logo-hq.png" alt="Logo HQ" class="logo-left" onerror="this.style.display='none'">
+            </div>
+            <div class="unit-info">
+                <h3>CỤC HẢI QUAN</h3>
+                <p>CHI CỤC HẢI QUAN KHU VỰC II</p>
+            </div>
+            <div class="logo-box">
+                <!-- Chú ý cần có file logo-hqkv2.png trong thư mục của bạn -->
+                <img src="logo-hqkv2.png" alt="Logo HQKV2" class="logo-right" onerror="this.style.display='none'">
+            </div>
+        </div>
+        <div class="title-area">
+            <h1>TRA CỨU THÔNG TIN TÀI KHOẢN NSNN</h1>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="🔍 Nhập từ khóa tìm kiếm (Tên hải quan, mã đơn vị, ký hiệu TK, mã NH...)">
+        </div>
+        <div style="font-size: 12px; color: rgba(255,255,255,0.9); margin-top: 5px; text-align: center; font-style: italic;">
+            Hỗ trợ tìm kiếm nhanh không dấu
+        </div>
+    </header>
 
     <!-- Nút chức năng -->
     <div class="action-buttons">
         <a href="#" class="btn btn-primary">🔍 Tra cứu nợ thuế</a>
-        <a href="#" class="btn btn-outline">📝 Nộp mẫu 56</a>
+        <a href="#" class="btn btn-outline">📝 Điền mẫu 56</a>
     </div>
 
-    <!-- Thanh tìm kiếm -->
-    <input type="text" id="search-input" class="search-box" placeholder="🔍 Nhập từ khóa để tìm kiếm (Tên hải quan, mã đơn vị, ký hiệu TK, mã NH...)">
-
     <!-- Khu vực hiển thị dữ liệu -->
-    <div id="loading">⏳ Đang tải dữ liệu, vui lòng chờ trong giây lát...</div>
+    <div id="loading">⏳ Đang kết nối dữ liệu NSNN, vui lòng chờ...</div>
     <div id="nsnn-grid" class="grid-container" style="display: none;"></div>
 
-    <!-- Footer & Bộ đếm -->
+    <!-- FOOTER -->
     <footer>
-        <div class="footer-content">
-            <div style="font-weight: bold; font-size: 14px;">
-                © Sản phẩm của Đoàn thanh niên<br>Chi cục Hải quan khu vực II
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; align-items: center; justify-content: flex-start; gap: 15px;">
+                <!-- Chú ý cần có file Logo-doan.png trong thư mục của bạn -->
+                <img src="Logo-doan.png" alt="Logo Đoàn" class="footer-logo" onerror="this.style.display='none'">
+                <p style="margin: 0; font-weight: bold; color: #1976d2; text-align: left; font-size: 13px;">
+                    Một sản phẩm của Đoàn thanh niên<br>Chi cục Hải quan khu vực II
+                </p>
             </div>
             
-            <div class="counter-box">
-                <span style="font-size: 12px; font-weight: bold; text-transform: uppercase;">Lượt truy cập:</span>
-                <!-- BỘ ĐẾM HITWEBCOUNTER CỦA BẠN (Mã 21511758) -->
-                <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener" title="Website">
-                    <img src="https://www.hitwebcounter.com/counter/counter.php?page=21511758&amp;style=0025&amp;nbdigits=5&amp;type=page" alt="Website" decoding="async" style="border:0; height: 22px; filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));" />
+            <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.5); padding: 5px 10px; border-radius: 8px; border: 1px solid rgba(25, 118, 210, 0.2);">
+                <p style="margin: 0; font-size: 10px; color: #1976d2; font-weight: bold; text-transform: uppercase;">Lượt truy cập:</p>
+                <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener" title="hitwebcounter.com">
+                    <img src="https://www.hitwebcounter.com/counter/counter.php?page=21511758&amp;style=0025&amp;nbdigits=5&amp;type=page" alt="hitwebcounter" decoding="async" style="border:0;height:22px;" />
                 </a>
             </div>
         </div>
-        
-        <div class="location">
-            <a href="https://maps.app.goo.gl/fGw6eB8g49TQrmxs6">
+
+        <div style="border-top: 1px solid rgba(25, 118, 210, 0.1); padding-top: 12px; text-align: center; width: 100%;">
+            <a href="https://maps.app.goo.gl/fGw6eB8g49TQrmxs6" rel="noopener" style="color: #1976d2; text-decoration: none; font-size: clamp(10px, 3vw, 13px); display: inline-flex; align-items: center; gap: 4px; font-weight: bold; padding: 6px 12px; background: rgba(255,255,255,0.7); border-radius: 12px; border: 1px solid rgba(25, 118, 210, 0.2); transition: all 0.2s; white-space: normal; line-height: 1.3;">
                 📍 Số 02 Hàm Nghi, Phường Sài Gòn, Thành phố Hồ Chí Minh
             </a>
         </div>
@@ -142,14 +199,11 @@
 </div>
 
 <script>
-    // ==========================================
-    // 1. DÁN ĐƯỜNG LINK API CỦA BẠN VÀO DƯỚI ĐÂY
-    // ==========================================
     const API_URL = "https://script.google.com/macros/s/AKfycbzuVEIS8wBt8jcav6WE-wex_d_uAWkq1vv5iJPo06ecbgBfZjNF2N0UTY2JB7f6bSlENg/exec"; 
     
     let globalData = [];
 
-    // Hàm loại bỏ dấu tiếng Việt để tìm kiếm dễ dàng hơn
+    // Hàm loại bỏ dấu tiếng Việt để tìm kiếm
     function removeAccents(str) {
         if(!str) return "";
         return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
@@ -161,7 +215,7 @@
         let html = "";
         
         if(!dataArray || dataArray.length === 0) {
-            container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: rgba(255,255,255,0.9); border-radius: 12px; color: #333;">
+            container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(16px); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 1); color: #555; box-shadow: 0 8px 32px rgba(0,0,0,0.08);">
                 <span style="font-size: 40px;">🔍</span><br><br>Không tìm thấy thông tin tài khoản phù hợp với từ khóa của bạn.
             </div>`;
             return;
@@ -190,7 +244,7 @@
                 </div>
                 <div class="info-row">
                     <span class="info-label">Tên KBNN:</span>
-                    <span class="info-value" style="color: #1565c0; font-weight: bold;">${item.tenKBNN || '-'}</span>
+                    <span class="info-value" style="color: #0d47a1; font-size: 15px;">${item.tenKBNN || '-'}</span>
                 </div>
                 <div class="info-row">
                     <span class="info-label">Mã KBNN:</span>
@@ -227,15 +281,13 @@
         renderData(filtered);
     });
 
-    // ==========================================
-    // 2. LẤY DỮ LIỆU TỪ GOOGLE SHEETS
-    // ==========================================
+    // LẤY DỮ LIỆU TỪ GOOGLE SHEETS
     fetch(API_URL)
         .then(response => response.json())
         .then(data => {
             globalData = data;
-            document.getElementById('loading').style.display = 'none'; // Ẩn chữ đang tải
-            document.getElementById('nsnn-grid').style.display = 'grid'; // Hiện khung dữ liệu
+            document.getElementById('loading').style.display = 'none'; 
+            document.getElementById('nsnn-grid').style.display = 'grid'; 
             renderData(globalData);
         })
         .catch(error => {
