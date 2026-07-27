@@ -98,27 +98,35 @@
 <!-- KHU VỰC 2: BẢN IN PDF (CHỈ HIỆN KHI BẤM NÚT IN) -->
 <div id="print-area">
     <!-- CỘT TIÊU ĐỀ TRÊN CÙNG -->
-    <table style="width: 100%; border: none; margin-bottom: 20px;">
+    <table style="width: 100%; border: none; margin-bottom: 20px; border-spacing: 0;">
+        <!-- Hàng 1: Tên Công ty & Quốc hiệu -->
         <tr>
-            <td style="width: 45%; text-align: center; vertical-align: top;">
-                <!-- In đậm tên công ty nằm dòng đầu tiên, ngang hàng với CỘNG HÒA... -->
+            <td style="width: 45%; text-align: center; vertical-align: top; padding-bottom: 2px;">
                 <p class="uppercase bold" style="margin: 0; font-size: 13pt;" id="p_tenCongTy_header"></p>
-                <!-- Dòng trống nằm dưới tên công ty để đẩy gạch ngang xuống bằng với gạch ngang bên phải -->
-                <p style="margin: 0; font-size: 14pt;">&nbsp;</p>
-                <hr style="width: 40%; border-top: 1px solid black; margin: 2px auto;">
-                
-                <p style="margin: 5px 0 0 0; font-size: 14pt;">Số: <span id="p_soCongVan"></span></p>
-                <!-- Chữ V/v kéo sát lên với margin-top giảm còn 5px -->
-                <p style="margin: 5px 0 0 0; font-size: 12pt;">V/v đề nghị xác nhận hoàn thành nghĩa vụ nộp thuế</p>
             </td>
-            <td style="width: 55%; text-align: center; vertical-align: top;">
+            <td style="width: 55%; text-align: center; vertical-align: top; padding-bottom: 2px;">
                 <!-- Giảm cỡ chữ 12pt, ép nằm trên 1 hàng (nowrap) -->
                 <p class="bold" style="margin: 0; font-size: 12pt; white-space: nowrap;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
                 <p class="bold" style="margin: 0; font-size: 14pt;">Độc lập - Tự do - Hạnh phúc</p>
-                <!-- Đổi thành thẻ hr để giống bên trái -->
-                <hr style="width: 45%; border-top: 1px solid black; margin: 2px auto;">
-                
-                <!-- Giảm số chấm sau chữ ngày, tháng, bỏ chấm sau chữ năm -->
+            </td>
+        </tr>
+        <!-- Hàng 2: Gạch ngang (Luôn thẳng hàng với nhau) -->
+        <tr>
+            <td style="width: 45%; text-align: center; vertical-align: top;">
+                <hr style="width: 40%; border-top: 1px solid black; margin: 0 auto;">
+            </td>
+            <td style="width: 55%; text-align: center; vertical-align: top;">
+                <hr style="width: 45%; border-top: 1px solid black; margin: 0 auto;">
+            </td>
+        </tr>
+        <!-- Hàng 3: Số Công Văn & Ngày tháng -->
+        <tr>
+            <td style="width: 45%; text-align: center; vertical-align: top;">
+                <p style="margin: 5px 0 0 0; font-size: 14pt;">Số: <span id="p_soCongVan"></span></p>
+                <!-- Chữ V/v nằm sát Số CV -->
+                <p style="margin: 5px 0 0 0; font-size: 12pt;">V/v đề nghị xác nhận hoàn thành nghĩa vụ nộp thuế</p>
+            </td>
+            <td style="width: 55%; text-align: center; vertical-align: top;">
                 <p style="margin: 5px 0 0 0; font-style: italic; font-size: 14pt;">TP. Hồ Chí Minh, ngày ...tháng...năm..</p>
             </td>
         </tr>
