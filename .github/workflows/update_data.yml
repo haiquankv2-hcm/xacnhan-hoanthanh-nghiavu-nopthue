@@ -1,0 +1,32 @@
+name: Tu Dong Cap Nhat Du Lieu NSNN
+
+on:
+  schedule:
+    # Chạy lúc 12:00 trưa giờ Việt Nam (UTC+7), tức là 05:00 sáng giờ UTC
+    - cron: '0 5 * * *'
+  workflow_dispatch: # Dòng này cho phép bạn bấm nút chạy thủ công bất kỳ lúc nào
+
+jobs:
+  update-json:
+    runs-on: ubuntu-latest
+    
+    # Cấp quyền cho Bot được phép ghi đè file vào kho của bạn
+    permissions:
+      contents: write 
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Lấy dữ liệu từ Google Sheets
+        run: |
+          # Dùng curl để tải dữ liệu từ link API về và lưu thành file data.json
+          curl -L "https://script.google.com/macros/s/AKfycbzuVEIS8wBt8jcav6WE-wex_d_uAWkq1vv5iJPo06ecbgBfZjNF2N0UTY2JB7f6bSlENg/exec" -o data.json
+
+      - name: Lưu file lên GitHub
+        run: |
+          git config --global user.name "GitHub Action Bot"
+          git config --global user.email "action@github.com"
+          git add data.json
+          git commit -m "Tự động cập nhật data.json lúc 12h" || echo "Không có dữ liệu mới để cập nhật"
+          git push
