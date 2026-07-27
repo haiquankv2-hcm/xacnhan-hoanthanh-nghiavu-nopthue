@@ -48,7 +48,10 @@
            GIAO DIỆN KHI BẤM NÚT IN HOẶC XUẤT PDF
            ========================================= */
         @media print {
-            @page { size: A4; margin: 20mm 25mm 20mm 25mm; } 
+            @page { 
+                size: A4; 
+                margin: 0; /* Cho lề bằng 0 để triệt tiêu Tiêu đề web và Ngày giờ mặc định của trình duyệt */
+            } 
             
             body, html { background: white !important; margin: 0; padding: 0; }
             .container { display: none !important; }
@@ -56,6 +59,9 @@
             #print-area { 
                 display: block; 
                 width: 100%;
+                /* Bù lại lề chuẩn của tờ A4 bằng padding: Trái/phải 25mm, Trên/dưới 20mm */
+                padding: 20mm 25mm 20mm 25mm; 
+                box-sizing: border-box;
                 font-family: 'Times New Roman', Times, serif; 
                 font-size: 14pt; /* Cỡ chữ chuẩn chung */
                 line-height: 1.3;
@@ -92,29 +98,28 @@
 <!-- KHU VỰC 2: BẢN IN PDF (CHỈ HIỆN KHI BẤM NÚT IN) -->
 <div id="print-area">
     <!-- CỘT TIÊU ĐỀ TRÊN CÙNG -->
-    <table style="width: 100%; border: none; margin-bottom: 10px;">
+    <table style="width: 100%; border: none; margin-bottom: 20px;">
         <tr>
             <td style="width: 45%; text-align: center; vertical-align: top;">
-                <p class="uppercase" style="margin: 0; font-size: 13pt; font-weight: normal;" id="p_tenCongTy_header"></p>
+                <!-- In đậm tên công ty -->
+                <p class="uppercase bold" style="margin: 0; font-size: 13pt;" id="p_tenCongTy_header"></p>
                 <hr style="width: 40%; border-top: 1px solid black; margin: 2px auto;">
                 <p style="margin: 5px 0 0 0; font-size: 14pt;">Số: <span id="p_soCongVan"></span></p>
+                <!-- Chữ V/v được đưa vào dưới Số CV, cỡ 12pt -->
+                <p style="margin: 15px 0 0 0; font-size: 12pt;">V/v đề nghị xác nhận hoàn thành nghĩa vụ nộp thuế</p>
             </td>
             <td style="width: 55%; text-align: center; vertical-align: top;">
-                <p class="bold" style="margin: 0; font-size: 13pt;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
+                <!-- Giảm cỡ chữ 12pt, ép nằm trên 1 hàng (nowrap) -->
+                <p class="bold" style="margin: 0; font-size: 12pt; white-space: nowrap;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
                 <p class="bold" style="margin: 0; font-size: 14pt; text-decoration: underline;">Độc lập - Tự do - Hạnh phúc</p>
-                <p style="margin: 10px 0 0 0; font-style: italic; font-size: 14pt;">TP. Hồ Chí Minh, ngày ….. tháng ….. năm ……</p>
+                <!-- Giảm số chấm sau chữ ngày, tháng, bỏ chấm sau chữ năm -->
+                <p style="margin: 10px 0 0 0; font-style: italic; font-size: 14pt;">TP. Hồ Chí Minh, ngày ... tháng ... năm</p>
             </td>
         </tr>
     </table>
     
-    <!-- TIÊU ĐỀ CÔNG VĂN: Cỡ 12pt, font Times New Roman, Center -->
-    <p style="text-align: center; margin: 15px 0 15px 0; font-size: 12pt; font-family: 'Times New Roman', Times, serif;">
-        V/v đề nghị xác nhận hoàn thành nghĩa vụ nộp thuế
-    </p>
-    
     <!-- NỘI DUNG CHÍNH -->
     <div style="text-align: justify;">
-        <!-- Kính gửi: Căn giữa -->
         <p style="text-align: center; margin-bottom: 15px;"><span class="bold">Kính gửi:</span> Chi cục Hải quan khu vực II</p>
         
         <p>Căn cứ Khoản … Điều … Thông tư số 86/2026/TT-BTC ngày 30/06/2026 của Bộ Trưởng Bộ Tài chính quy định về quản lý thuế đối với hàng hóa xuất khẩu, nhập khẩu.</p>
@@ -125,7 +130,8 @@
         
         <p>Địa chỉ liên hệ: <span id="p_diaChiLienHe"></span></p>
         
-        <p>Đề nghị Chi cục Hải quan khu vực/đơn vị Hải quan xác nhận hoàn thành nghĩa vụ nộp thuế cho: <span id="p_tenDonViXacNhan"></span> , mã số thuế: <span id="p_maSoThue"></span></p>
+        <!-- Mã số thuế đã được in đậm (class="bold") -->
+        <p>Đề nghị Chi cục Hải quan khu vực/đơn vị Hải quan xác nhận hoàn thành nghĩa vụ nộp thuế cho: <span id="p_tenDonViXacNhan"></span> , mã số thuế: <span class="bold" id="p_maSoThue"></span></p>
         
         <p>Lý do xác nhận hoàn thành nghĩa vụ nộp thuế: <span id="p_lyDo"></span></p>
         
@@ -141,7 +147,6 @@
                 <p style="margin: 0; font-size: 12pt;">- Lưu: VT,</p>
             </td>
             <td style="width: 50%; text-align: center; vertical-align: top;">
-                <!-- Sử dụng white-space: nowrap để giữ chữ trên 1 hàng -->
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt; white-space: nowrap;">NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</p>
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt;">(HOẶC NGƯỜI ĐƯỢC ỦY QUYỀN)</p>
                 <p class="bold uppercase" style="margin-top: 100px; font-size: 14pt;" id="p_nguoiDaiDien"></p>
