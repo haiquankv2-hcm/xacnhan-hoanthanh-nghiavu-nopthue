@@ -84,18 +84,55 @@
             gap: 20px;
         }
         
-      /* THẺ HIỂN THỊ - MẪU 3: KHỐI NỔI 3D (NEUMORPHISM) */
-        .card { background: #f4f7f9; border-radius: 20px; padding: 22px; color: #333; box-shadow: 6px 6px 16px #d1d9e6, -6px -6px 16px #ffffff; transition: all 0.3s ease; border: 1px solid #fff; position: relative; overflow: hidden; }
-        .card:hover { transform: translateY(-3px); box-shadow: 8px 8px 20px #c5d0e0, -8px -8px 20px #ffffff; }
+    /* ================= MẪU KẾT HỢP: KHỐI NỔI 3D + ĐIỂM NHẤN VIỀN TRÊN ================= */
+        .card { 
+            background: #f4f7f9; 
+            border-radius: 16px; 
+            padding: 22px; 
+            color: #333; 
+            box-shadow: 6px 6px 16px #d1d9e6, -6px -6px 16px #ffffff; 
+            transition: all 0.3s ease; 
+            border: 1px solid #fff; 
+            border-top: 6px solid #1976d2; /* Điểm nhấn viền trên màu xanh */
+            position: relative; 
+            overflow: hidden; 
+        }
+        .card:hover { 
+            transform: translateY(-4px); 
+            box-shadow: 8px 8px 20px #c5d0e0, -8px -8px 20px #ffffff; 
+            border-top-color: #d32f2f; /* Đổi sang viền đỏ khi trỏ chuột vào */
+        }
         .card h3 { margin: 0 0 15px 0; color: #1976d2; font-size: 17px; font-weight: 900; border-bottom: 1px dashed #b0bec5; padding-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; }
         .stt-badge { background: linear-gradient(135deg, #1976d2, #42a5f5); color: #fff; padding: 3px 10px; border-radius: 8px; font-size: 13px; box-shadow: 2px 2px 5px rgba(25, 118, 210, 0.3); }
         .info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; border-bottom: 1px dotted #cfd8dc; padding-bottom: 6px; }
         .info-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .info-label { font-weight: 600; color: #607d8b; }
         .info-value { text-align: right; max-width: 60%; word-break: break-word; color: #263238; font-weight: bold; }
-        .account-group-box { background: #ffffff; border-radius: 12px; padding: 15px; margin-top: 15px; box-shadow: inset 2px 2px 5px #e0e5ec, inset -2px -2px 5px #f4f7f9; }
-        .account-group-title { font-size: 12px; font-weight: bold; color: #555; margin-bottom: 10px; text-transform: uppercase; }
-        .account-item { background: #f8fafc; padding: 10px 12px; border-radius: 8px; margin-bottom: 10px; border-left: 3px solid #d32f2f; box-shadow: 2px 2px 5px #d1d9e6; display: flex; flex-direction: column; gap: 4px; }
+        
+        /* Khung gộp tài khoản - Hiệu ứng lõm xuống (Inset 3D) */
+        .account-group-box { 
+            background: #f4f7f9; 
+            border-radius: 12px; 
+            padding: 15px; 
+            margin-top: 15px; 
+            box-shadow: inset 4px 4px 8px #d1d9e6, inset -4px -4px 8px #ffffff; 
+        }
+        .account-group-title { font-size: 12px; font-weight: bold; color: #1976d2; margin-bottom: 12px; text-transform: uppercase; }
+        
+        /* Từng tài khoản - Hiệu ứng nổi lên (Outset 3D) + Viền trái */
+        .account-item { 
+            background: #f4f7f9; 
+            padding: 10px 12px; 
+            border-radius: 8px; 
+            margin-bottom: 12px; 
+            border-left: 4px solid #d32f2f; 
+            box-shadow: 3px 3px 6px #d1d9e6, -3px -3px 6px #ffffff; 
+            display: flex; 
+            flex-direction: column; 
+            gap: 4px; 
+            transition: 0.2s;
+        }
+        .account-item:hover { transform: scale(1.02); }
         .account-item:last-child { margin-bottom: 0; }
         .acc-number { font-size: 17px; font-weight: 900; color: #d32f2f; }
         .acc-name { font-size: 13px; color: #455a64; font-weight: 500;}
