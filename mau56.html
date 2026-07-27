@@ -85,7 +85,7 @@
     </div>
     <div class="form-group"><label>2. Số Công văn:</label><input type="text" id="soCongVan" placeholder="VD: 12/CV-ABC"></div>
     <div class="form-group"><label>3. Địa chỉ (ghi trên Giấy chứng nhận ĐKDN):</label><input type="text" id="diaChiDKDN"></div>
-    <div class="form-group"><label>4. Địa chỉ liên hệ:</label><input type="text" id="diaChiLienHe"></div>
+     <div class="form-group"><label>4. Địa chỉ liên hệ:</label><input type="text" id="diaChiLienHe" placeholder="Ghi rõ địa chỉ sau sát nhập và SĐT liên hệ"></div>
     <div class="form-group"><label>5. Tên Đơn vị muốn xác nhận (Công ty/Chi nhánh/HKD):</label><input type="text" id="tenDonViXacNhan"></div>
     <div class="form-group"><label>6. Mã số thuế:</label><input type="text" id="maSoThue"></div>
     <div class="form-group"><label>7. Lý do xác nhận:</label><input type="text" id="lyDo" placeholder="Ghi rõ để giải thể, đóng mã số thuế, mục đích khác..."></div>
@@ -101,26 +101,33 @@
     <table style="width: 100%; border: none; margin-bottom: 20px;">
         <tr>
             <td style="width: 45%; text-align: center; vertical-align: top;">
+                <!-- Dòng trống để cân bằng chiều cao với 2 dòng bên phải, giúp gạch ngang bằng nhau -->
+                <p style="margin: 0; font-size: 12pt;">&nbsp;</p>
                 <!-- In đậm tên công ty -->
                 <p class="uppercase bold" style="margin: 0; font-size: 13pt;" id="p_tenCongTy_header"></p>
                 <hr style="width: 40%; border-top: 1px solid black; margin: 2px auto;">
+                
                 <p style="margin: 5px 0 0 0; font-size: 14pt;">Số: <span id="p_soCongVan"></span></p>
-                <!-- Chữ V/v được đưa vào dưới Số CV, cỡ 12pt -->
-                <p style="margin: 15px 0 0 0; font-size: 12pt;">V/v đề nghị xác nhận hoàn thành nghĩa vụ nộp thuế</p>
+                <!-- Chữ V/v kéo sát lên với margin-top giảm còn 5px -->
+                <p style="margin: 5px 0 0 0; font-size: 12pt;">V/v đề nghị xác nhận hoàn thành nghĩa vụ nộp thuế</p>
             </td>
             <td style="width: 55%; text-align: center; vertical-align: top;">
                 <!-- Giảm cỡ chữ 12pt, ép nằm trên 1 hàng (nowrap) -->
                 <p class="bold" style="margin: 0; font-size: 12pt; white-space: nowrap;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
-                <p class="bold" style="margin: 0; font-size: 14pt; text-decoration: underline;">Độc lập - Tự do - Hạnh phúc</p>
+                <p class="bold" style="margin: 0; font-size: 14pt;">Độc lập - Tự do - Hạnh phúc</p>
+                <!-- Đổi thành thẻ hr để giống bên trái -->
+                <hr style="width: 45%; border-top: 1px solid black; margin: 2px auto;">
+                
                 <!-- Giảm số chấm sau chữ ngày, tháng, bỏ chấm sau chữ năm -->
-                <p style="margin: 10px 0 0 0; font-style: italic; font-size: 14pt;">TP. Hồ Chí Minh, ngày ... tháng ... năm</p>
+                <p style="margin: 5px 0 0 0; font-style: italic; font-size: 14pt;">TP. Hồ Chí Minh, ngày ...tháng...năm..</p>
             </td>
         </tr>
     </table>
     
     <!-- NỘI DUNG CHÍNH -->
     <div style="text-align: justify;">
-        <p style="text-align: center; margin-bottom: 15px;"><span class="bold">Kính gửi:</span> Chi cục Hải quan khu vực II</p>
+        <!-- margin-bottom tăng lên 35px để tạo khoảng cách bằng 1 dòng trắng -->
+        <p style="text-align: center; margin-bottom: 35px;"><span class="bold">Kính gửi:</span> Chi cục Hải quan khu vực II</p>
         
         <p>Căn cứ Khoản … Điều … Thông tư số 86/2026/TT-BTC ngày 30/06/2026 của Bộ Trưởng Bộ Tài chính quy định về quản lý thuế đối với hàng hóa xuất khẩu, nhập khẩu.</p>
         
@@ -131,7 +138,7 @@
         <p>Địa chỉ liên hệ: <span id="p_diaChiLienHe"></span></p>
         
         <!-- Mã số thuế đã được in đậm (class="bold") -->
-        <p>Đề nghị Chi cục Hải quan khu vực/đơn vị Hải quan xác nhận hoàn thành nghĩa vụ nộp thuế cho: <span id="p_tenDonViXacNhan"></span> , mã số thuế: <span class="bold" id="p_maSoThue"></span></p>
+        <p>Đề nghị Chi cục Hải quan khu vực/đơn vị Hải quan xác nhận hoàn thành nghĩa vụ nộp thuế cho: <span class="bold" id="p_tenDonViXacNhan"></span>, mã số thuế: <span class="bold" id="p_maSoThue"></span></p>
         
         <p>Lý do xác nhận hoàn thành nghĩa vụ nộp thuế: <span id="p_lyDo"></span></p>
         
