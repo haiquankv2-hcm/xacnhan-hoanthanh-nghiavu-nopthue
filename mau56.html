@@ -5,7 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Điền Mẫu 56 - Xác Nhận Hoàn Thành Nghĩa Vụ Thuế</title>
     <style>
-        /* GIAO DIỆN MÀN HÌNH MÁY TÍNH */
+        /* =========================================
+           GIAO DIỆN MÀN HÌNH MÁY TÍNH
+           ========================================= */
         body { 
             font-family: Arial, sans-serif; 
             background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); 
@@ -39,30 +41,28 @@
         .back-link { display: block; text-align: center; margin-top: 15px; color: #1976d2; text-decoration: none; font-weight: bold; }
         .back-link:hover { text-decoration: underline; }
 
-        /* KHU VỰC A4 (ẨN TRÊN MÀN HÌNH WEB) */
+        /* Ẩn khu vực in trên màn hình máy tính */
         #print-area { display: none; }
 
         /* =========================================
            GIAO DIỆN KHI BẤM NÚT IN HOẶC XUẤT PDF
            ========================================= */
         @media print {
-            @page { size: A4; margin: 20mm; } /* Đặt kích thước khổ giấy A4, viền 2cm */
+            @page { size: A4; margin: 20mm 25mm 20mm 25mm; } /* Viền: Trái/phải 2.5cm, trên/dưới 2cm */
             
-            /* Ẩn mọi thứ của trang web (Nền, form, nút bấm...) */
             body, html { background: white !important; margin: 0; padding: 0; }
             .container { display: none !important; }
             
-            /* Chỉ hiện khu vực Tờ giấy A4 */
             #print-area { 
                 display: block; 
                 width: 100%;
                 font-family: 'Times New Roman', Times, serif; 
-                font-size: 14pt; /* Cỡ chữ chuẩn văn bản hành chính */
-                line-height: 1.5;
+                font-size: 14pt; /* Cỡ chữ chuẩn theo quy định */
+                line-height: 1.3;
                 color: black;
             }
+            p { margin: 6px 0; }
             .bold { font-weight: bold; }
-            .center { text-align: center; }
             .uppercase { text-transform: uppercase; }
         }
     </style>
@@ -71,84 +71,98 @@
 
 <!-- KHU VỰC 1: FORM ĐIỀN TRÊN WEB -->
 <div class="container">
-    <h2>📝 ĐIỀN THÔNG TIN MẪU 56</h2>
-    <p style="text-align: center; font-size: 14px; color: #555; margin-bottom: 25px;">Điền thông tin và bấm nút Xuất PDF. Trình duyệt sẽ mở giao diện cho bạn lưu PDF hoặc in trực tiếp.</p>
-
-    <!-- FORM ĐIỀN THÔNG TIN (Đã bỏ Email) -->
+    <h2>📝 ĐIỀN THÔNG TIN MẪU XÁC NHẬN</h2>
+    
     <div class="form-group">
-        <label>1. Tên công ty/HKD cá nhân (IN HOA):</label>
-        <input type="text" id="tenCongTy" placeholder="VD: CÔNG TY TNHH XUẤT NHẬP KHẨU ABC" style="text-transform: uppercase;">
+        <label>1. Tên công ty/Cơ quan NN có thẩm quyền:</label>
+        <input type="text" id="tenCongTy" placeholder="VD: CÔNG TY TNHH ABC" style="text-transform: uppercase;">
     </div>
-    <div class="form-group"><label>2. Số Công văn:</label><input type="text" id="soCongVan"></div>
-    <div class="form-group"><label>3. Địa chỉ ĐKDN:</label><input type="text" id="diaChiDKDN"></div>
+    <div class="form-group"><label>2. Số Công văn:</label><input type="text" id="soCongVan" placeholder="VD: 12/CV-ABC"></div>
+    <div class="form-group"><label>3. Địa chỉ (ghi trên Giấy chứng nhận ĐKDN):</label><input type="text" id="diaChiDKDN"></div>
     <div class="form-group"><label>4. Địa chỉ liên hệ:</label><input type="text" id="diaChiLienHe"></div>
-    <div class="form-group"><label>5. Điện thoại liên hệ:</label><input type="text" id="dienThoai"></div>
-    <div class="form-group"><label>6. Tên Công ty/Chi nhánh/HKD muốn xác nhận giải thể/chấm dứt HĐ:</label><input type="text" id="tenDonViXacNhan"></div>
-    <div class="form-group"><label>7. Mã số thuế:</label><input type="text" id="maSoThue"></div>
-    <div class="form-group"><label>8. Lý do xác nhận:</label><input type="text" id="lyDo"></div>
-    <div class="form-group"><label>9. Người đại diện theo pháp luật:</label><input type="text" id="nguoiDaiDien"></div>
+    <div class="form-group"><label>5. Tên Đơn vị muốn xác nhận (Công ty/Chi nhánh/HKD):</label><input type="text" id="tenDonViXacNhan"></div>
+    <div class="form-group"><label>6. Mã số thuế:</label><input type="text" id="maSoThue"></div>
+    <div class="form-group"><label>7. Lý do xác nhận:</label><input type="text" id="lyDo" placeholder="Ghi rõ để giải thể, đóng mã số thuế, mục đích khác..."></div>
+    <div class="form-group"><label>8. Người đại diện theo pháp luật (Ký tên):</label><input type="text" id="nguoiDaiDien"></div>
 
-    <button class="btn-download" onclick="exportPDF()">🖨️ XUẤT FILE PDF / IN MẪU 56</button>
+    <button class="btn-download" onclick="exportPDF()">🖨️ XUẤT FILE PDF / IN MẪU</button>
     <a href="index.html" class="back-link">🔙 Quay lại trang tra cứu</a>
 </div>
 
-<!-- KHU VỰC 2: KHU VỰC VĂN BẢN (CHỈ HIỆN KHI IN/XUẤT PDF) -->
+<!-- KHU VỰC 2: BẢN IN PDF (CHỈ HIỆN KHI BẤM NÚT IN) -->
 <div id="print-area">
-    <div class="center">
-        <p class="bold" style="margin: 0; font-size: 13pt;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
-        <p class="bold" style="margin: 0; text-decoration: underline; font-size: 14pt;">Độc lập - Tự do - Hạnh phúc</p>
+    <!-- CỘT TIÊU ĐỀ TRÊN CÙNG -->
+    <table style="width: 100%; border: none; margin-bottom: 20px;">
+        <tr>
+            <td style="width: 45%; text-align: center; vertical-align: top;">
+                <p class="uppercase" style="margin: 0; font-size: 13pt; font-weight: normal;" id="p_tenCongTy_header"></p>
+                <hr style="width: 40%; border-top: 1px solid black; margin: 2px auto;">
+                <p style="margin: 5px 0 0 0; font-size: 14pt;">Số: <span id="p_soCongVan"></span></p>
+            </td>
+            <td style="width: 55%; text-align: center; vertical-align: top;">
+                <p class="bold" style="margin: 0; font-size: 13pt;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
+                <p class="bold" style="margin: 0; font-size: 14pt; text-decoration: underline;">Độc lập - Tự do - Hạnh phúc</p>
+                <p style="margin: 10px 0 0 0; font-style: italic; font-size: 14pt;">TP. Hồ Chí Minh, ngày ….. tháng ….. năm ……</p>
+            </td>
+        </tr>
+    </table>
+    
+    <!-- TIÊU ĐỀ CÔNG VĂN -->
+    <p class="bold" style="text-align: left; margin: 30px 0 20px 0; font-size: 14pt;">
+        V/v đề nghị xác nhận hoàn thành nghĩa vụ nộp thuế
+    </p>
+    
+    <!-- NỘI DUNG CHÍNH -->
+    <div style="text-align: justify;">
+        <p><span class="bold">Kính gửi:</span> Chi cục Hải quan khu vực II</p>
+        
+        <p>Căn cứ Khoản … Điều … Thông tư số 86/2026/TT-BTC ngày 30/06/2026 của Bộ Trưởng Bộ Tài chính quy định về quản lý thuế đối với hàng hóa xuất khẩu, nhập khẩu.</p>
+        
+        <p>Tên Công ty/tên cơ quan nhà nước có thẩm quyền: <span class="bold uppercase" id="p_tenCongTy"></span></p>
+        
+        <p>Địa chỉ (đối với Công ty là địa chỉ ghi trên giấy chứng nhận đăng ký doanh nghiệp): <span id="p_diaChiDKDN"></span></p>
+        
+        <p>Địa chỉ liên hệ: <span id="p_diaChiLienHe"></span></p>
+        
+        <p>Đề nghị Chi cục Hải quan khu vực/đơn vị Hải quan xác nhận hoàn thành nghĩa vụ nộp thuế cho: <span id="p_tenDonViXacNhan"></span> , mã số thuế: <span id="p_maSoThue"></span></p>
+        
+        <p>Lý do xác nhận hoàn thành nghĩa vụ nộp thuế: <span id="p_lyDo"></span></p>
+        
+        <p>(Ghi rõ để giải thể, đóng mã số thuế, mục đích khác………)./.</p>
     </div>
     
-    <div class="center" style="margin-top: 30px; margin-bottom: 20px;">
-        <h2 style="margin: 0; font-size: 15pt; font-weight: bold; color: black;">CÔNG VĂN</h2>
-        <p class="bold" style="margin: 5px 0 0 0; font-size: 14pt;">V/v Đề nghị xác nhận hoàn thành nghĩa vụ nộp thuế</p>
-    </div>
-    
-    <div>
-        <p><span class="bold">Kính gửi:</span> Chi cục Hải quan cửa khẩu cảng Sài Gòn khu vực 2</p>
-        
-        <p>1. Tên công ty/HKD cá nhân: <span class="bold uppercase" id="p_tenCongTy"></span></p>
-        <p>2. Số Công văn: <span id="p_soCongVan"></span></p>
-        <p>3. Địa chỉ (ghi trên Giấy chứng nhận ĐKDN): <span id="p_diaChiDKDN"></span></p>
-        <p>4. Địa chỉ liên hệ: <span id="p_diaChiLienHe"></span></p>
-        <p>5. Điện thoại liên hệ: <span id="p_dienThoai"></span></p>
-        <p>6. Tên Công ty/Chi nhánh công ty/ HKD muốn được xác nhận hoàn thành nghĩa vụ nộp thuế để giải thể, chấm dứt hoạt động: <span id="p_tenDonViXacNhan"></span></p>
-        <p>7. Mã số thuế: <span class="bold" id="p_maSoThue"></span></p>
-        <p>8. Lý do xác nhận hoàn thành nghĩa vụ nộp thuế: <span id="p_lyDo"></span></p>
-        <p>9. Người đại diện theo pháp luật (hoặc người được ủy quyền): <span id="p_nguoiDaiDien"></span></p>
-        
-        <p style="margin-top: 20px; text-indent: 30px;">
-            Kính đề nghị Chi cục Hải quan cửa khẩu cảng Sài Gòn khu vực 2 xem xét và xác nhận hoàn thành nghĩa vụ nộp thuế cho đơn vị chúng tôi theo quy định.
-        </p>
-        <p style="text-indent: 30px;">Trân trọng cảm ơn!</p>
-        
-        <table style="width: 100%; border: none; margin-top: 30px;">
-            <tr>
-                <td style="width: 50%;"></td>
-                <td style="width: 50%; text-align: center;">
-                    <p style="margin: 0; font-style: italic; font-size: 14pt;">Ngày ..... tháng ..... năm .......</p>
-                    <p class="bold" style="margin: 5px 0; font-size: 14pt;">ĐẠI DIỆN DOANH NGHIỆP</p>
-                    <p style="margin: 0; font-style: italic; font-size: 13pt;">(Ký, ghi rõ họ tên và đóng dấu)</p>
-                </td>
-            </tr>
-        </table>
-    </div>
+    <!-- PHẦN CHỮ KÝ VÀ NƠI NHẬN -->
+    <table style="width: 100%; border: none; margin-top: 30px;">
+        <tr>
+            <td style="width: 50%; vertical-align: top;">
+                <p class="bold" style="margin: 0; font-size: 12pt; font-style: italic;">Nơi nhận:</p>
+                <p style="margin: 0; font-size: 12pt;">- Như trên;</p>
+                <p style="margin: 0; font-size: 12pt;">- Lưu: VT,</p>
+            </td>
+            <td style="width: 50%; text-align: center; vertical-align: top;">
+                <p class="bold" style="margin: 0; font-size: 14pt;">NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</p>
+                <p style="margin: 0; font-size: 14pt;">(HOẶC NGƯỜI ĐƯỢC ỦY QUYỀN)</p>
+                <!-- Khoảng trống để ký tên -->
+                <p class="bold uppercase" style="margin-top: 100px; font-size: 14pt;" id="p_nguoiDaiDien"></p>
+            </td>
+        </tr>
+    </table>
 </div>
 
 <script>
     function exportPDF() {
-        // Lấy dữ liệu người dùng gõ nhập vào khu vực in PDF
+        // Ánh xạ dữ liệu từ Form sang Khung in ấn
+        document.getElementById('p_tenCongTy_header').innerText = document.getElementById('tenCongTy').value;
         document.getElementById('p_tenCongTy').innerText = document.getElementById('tenCongTy').value;
         document.getElementById('p_soCongVan').innerText = document.getElementById('soCongVan').value;
         document.getElementById('p_diaChiDKDN').innerText = document.getElementById('diaChiDKDN').value;
         document.getElementById('p_diaChiLienHe').innerText = document.getElementById('diaChiLienHe').value;
-        document.getElementById('p_dienThoai').innerText = document.getElementById('dienThoai').value;
         document.getElementById('p_tenDonViXacNhan').innerText = document.getElementById('tenDonViXacNhan').value;
         document.getElementById('p_maSoThue').innerText = document.getElementById('maSoThue').value;
         document.getElementById('p_lyDo').innerText = document.getElementById('lyDo').value;
         document.getElementById('p_nguoiDaiDien').innerText = document.getElementById('nguoiDaiDien').value;
 
-        // Gọi lệnh in của trình duyệt (Có thể chọn in ra giấy hoặc Lưu thành PDF)
+        // Gọi lệnh tạo file PDF/In của trình duyệt
         window.print();
     }
 </script>
