@@ -3,62 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tra cứu NSNN - Chi cục Hải quan khu vực II</title>
-    <!-- Tích hợp Font Roboto -->
+    <title>Hướng Dẫn Xác Nhận Hoàn Thành Nghĩa Vụ Thuế</title>
+    <!-- Thêm thư viện Font Roboto -->
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;0,700;0,900&display=swap" rel="stylesheet">
-    
     <style>
-        /* ================= CSS CƠ BẢN & BỐ CỤC ================= */
-        body {
-            font-family: 'Roboto', Arial, sans-serif;
-            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-            margin: 0;
-            padding: 20px;
-            min-height: 100vh;
-            color: #333;
+        /* =========================================
+           CSS CHUNG - THEME "KÍNH MỜ" (GLASSMORPHISM)
+           ========================================= */
+        body { 
+            /* Đổi toàn bộ font sang Roboto */
+            font-family: 'Roboto', Arial, sans-serif; 
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); 
+            background-attachment: fixed;
+            margin: 0; 
+            padding: 10px; 
+            color: #333; 
+            display: flex; 
+            flex-direction: column; 
+            min-height: 100vh; 
         }
+        .main-container { width: 100%; max-width: 1200px; margin: auto; box-sizing: border-box; flex: 1; display: flex; flex-direction: column; }
+        
+        /* HEADER - HIỆU ỨNG KÍNH MỜ XANH */
+        header { 
+            background: rgba(25, 118, 210, 0.85);
+            backdrop-filter: blur(12px); 
+            -webkit-backdrop-filter: blur(12px);
+            color: white; 
+            padding: 20px 10px; 
+            border-radius: 16px; 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            margin-bottom: 20px; 
+            text-align: center; 
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15); 
+        } 
+        
+        /* Đưa các phần tử vào giữa, cách nhau 15px để sát nhau hơn */
+        .logo-area { display: flex; align-items: center; justify-content: center; width: 100%; margin-bottom: 15px; gap: 15px; }
+        .logo-box { display: flex; justify-content: center; align-items: center; }
+        .unit-info { text-align: center; }
+        
+        /* Tăng kích thước chữ CỤC HẢI QUAN */
+        .unit-info h3 { margin: 0; font-weight: 900; white-space: nowrap; font-size: clamp(18px, 5vw, 24px); letter-spacing: 0.5px; text-shadow: 1px 1px 2px rgba(0,0,0,0.2); }
+        /* Tăng kích thước chữ CHI CỤC HẢI QUAN... */
+        .unit-info p { margin: 4px 0 0 0; font-weight: 700; opacity: 0.9; white-space: nowrap; font-size: clamp(14px, 4vw, 18px); }
 
-        .header-container {
-            max-width: 1200px;
-            margin: 0 auto 30px auto;
-            text-align: center;
-        }
+        .logo-left { width: 100%; max-width: 65px; object-fit: contain; transform: scale(1.15); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        .logo-right { width: 100%; max-width: 65px; object-fit: contain; transform: scale(0.9); filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
 
-        .header-container h1 {
-            color: #1565c0;
-            font-weight: 900;
-            text-transform: uppercase;
+        .title-area h1 { color: #ffe082; margin: 0 0 15px 0; font-size: 20px; line-height: 1.3; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+        
+        /* THANH TÌM KIẾM TRONG HEADER */
+        .search-bar { 
+            background: rgba(255, 255, 255, 0.9); 
+            color: #444; 
+            padding: 14px 18px; 
+            border-radius: 12px; 
+            border: 1px solid rgba(255, 255, 255, 0.8); 
+            display: flex; 
+            align-items: center; 
             margin-bottom: 10px;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+            max-width: 800px;
+            margin: 0 auto 10px auto;
         }
+        .search-bar input { border: none; outline: none; flex-grow: 1; font-size: 15px; width: 100%; background: transparent; font-family: 'Roboto', Arial, sans-serif; }
+        
+        /* NÚT CHỨC NĂNG */
+        .action-buttons { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; margin-bottom: 25px; }
+        .btn { padding: 10px 20px; border-radius: 50px; text-decoration: none; font-weight: bold; transition: all 0.3s; font-size: 14px; cursor: pointer; border: 1px solid rgba(255,255,255,0.8); display: flex; align-items: center; gap: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.08);}
+        .btn-primary { background: rgba(25, 118, 210, 0.95); color: #fff; border: none;}
+        .btn-primary:hover { background: rgba(21, 101, 192, 1); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(25, 118, 210, 0.3);}
+        .btn-outline { background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(8px); color: #1976d2; }
+        .btn-outline:hover { background: rgba(255,255,255,0.9); transform: translateY(-2px); }
 
-        /* Ô Tìm Kiếm */
-        .search-box {
-            width: 100%;
-            max-width: 500px;
-            padding: 15px 20px;
-            border-radius: 30px;
-            border: none;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            font-size: 16px;
-            font-family: 'Roboto', sans-serif;
-            outline: none;
-            transition: 0.3s;
-        }
-        .search-box:focus {
-            box-shadow: 0 4px 20px rgba(25, 118, 210, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Lưới chứa các thẻ Card */
-        #card-container {
+        /* KHU VỰC LƯỚI DATA NSNN */
+        .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-            gap: 25px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 20px;
         }
-
-        /* ================= MẪU KẾT HỢP: KHỐI NỔI 3D + ĐIỂM NHẤN VIỀN TRÊN ================= */
+        
+    /* ================= MẪU KẾT HỢP: KHỐI NỔI 3D + ĐIỂM NHẤN VIỀN TRÊN ================= */
         .card { 
             background: #f4f7f9; 
             border-radius: 16px; 
@@ -67,21 +93,21 @@
             box-shadow: 6px 6px 16px #d1d9e6, -6px -6px 16px #ffffff; 
             transition: all 0.3s ease; 
             border: 1px solid #fff; 
-            border-top: 6px solid #1976d2; 
+            border-top: 6px solid #1976d2; /* Điểm nhấn viền trên màu xanh */
             position: relative; 
             overflow: hidden; 
         }
         .card:hover { 
             transform: translateY(-4px); 
             box-shadow: 8px 8px 20px #c5d0e0, -8px -8px 20px #ffffff; 
-            border-top-color: #d32f2f; 
+            border-top-color: #d32f2f; /* Đổi sang viền đỏ khi trỏ chuột vào */
         }
         .card h3 { margin: 0 0 15px 0; color: #1976d2; font-size: 17px; font-weight: 900; border-bottom: 1px dashed #b0bec5; padding-bottom: 12px; display: flex; align-items: flex-start; gap: 10px; }
         .stt-badge { background: linear-gradient(135deg, #1976d2, #42a5f5); color: #fff; padding: 3px 10px; border-radius: 8px; font-size: 13px; box-shadow: 2px 2px 5px rgba(25, 118, 210, 0.3); }
         .info-row { display: flex; justify-content: space-between; margin-bottom: 8px; font-size: 14px; border-bottom: 1px dotted #cfd8dc; padding-bottom: 6px; }
         .info-row:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .info-label { font-weight: 600; color: #607d8b; }
-        .info-value { text-align: right; max-width: 65%; word-break: break-word; color: #263238; font-weight: bold; }
+        .info-value { text-align: right; max-width: 60%; word-break: break-word; color: #263238; font-weight: bold; }
         
         /* Khung gộp tài khoản - Hiệu ứng lõm xuống (Inset 3D) */
         .account-group-box { 
@@ -93,7 +119,7 @@
         }
         .account-group-title { font-size: 12px; font-weight: bold; color: #1976d2; margin-bottom: 12px; text-transform: uppercase; }
         
-        /* Từng tài khoản - Hiệu ứng nổi lên (Outset 3D) */
+        /* Từng tài khoản - Hiệu ứng nổi lên (Outset 3D) + Viền trái */
         .account-item { 
             background: #f4f7f9; 
             padding: 10px 12px; 
@@ -110,187 +136,228 @@
         .account-item:last-child { margin-bottom: 0; }
         .acc-number { font-size: 17px; font-weight: 900; color: #d32f2f; }
         .acc-name { font-size: 13px; color: #455a64; font-weight: 500;}
+     
 
-        /* ================= CSS CHO LINK GOOGLE MAPS ================= */
-        .map-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 4px;
-            color: #1976d2;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            font-weight: bold;
-            text-align: right;
-            justify-content: flex-end;
-        }
-        .map-link:hover {
-            color: #d32f2f;
-            text-decoration: underline;
-        }
-        .map-icon {
-            flex-shrink: 0;
-            fill: currentColor;
-            transition: transform 0.2s ease;
-        }
-        .map-link:hover .map-icon {
-            transform: translateY(-2px) scale(1.1);
-        }
+        #loading { text-align: center; font-size: 16px; color: #1976d2; padding: 30px; font-weight: bold; }
 
-        #loading { text-align: center; font-size: 16px; font-weight: bold; color: #1565c0; margin-top: 50px; }
+        /* FOOTER ĐOÀN THANH NIÊN - KÍNH MỜ TRẮNG */
+        footer { 
+            background: rgba(255, 255, 255, 0.65); 
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.9); 
+            border-radius: 16px; 
+            padding: 15px; 
+            margin: 30px 0 10px 0; 
+            display: flex; 
+            flex-direction: column;
+            gap: 15px; 
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08); 
+        }
+        .footer-logo { height: 40px; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1)); }
     </style>
 </head>
 <body>
 
-    <div class="header-container">
-        <h1>Tra cứu thông tin NSNN</h1>
-        <p>Chi cục Hải quan khu vực II</p>
-        <input type="text" id="searchInput" class="search-box" placeholder="🔍 Nhập mã đơn vị hoặc tên đơn vị để tìm kiếm...">
+<div class="main-container">
+    
+    <!-- HEADER -->
+    <header>
+        <div class="logo-area">
+            <div class="logo-box">
+                <img src="logo-hq.png" alt="Logo HQ" class="logo-left" onerror="this.style.display='none'">
+            </div>
+            <div class="unit-info">
+                <h3>CỤC HẢI QUAN</h3>
+                <p>CHI CỤC HẢI QUAN KHU VỰC II</p>
+            </div>
+            <div class="logo-box">
+                <img src="logo-hqkv2.png" alt="Logo HQKV2" class="logo-right" onerror="this.style.display='none'">
+            </div>
+        </div>
+        <div class="title-area">
+            <h1>Hướng Dẫn Xác Nhận Hoàn Thành Nghĩa Vụ Thuế</h1>
+        </div>
+        
+        <div class="search-bar">
+            <input type="text" id="search-input" placeholder="🔍 Nhập từ khóa tìm kiếm (Tên hải quan, mã đơn vị, ký hiệu TK, mã NH...)">
+        </div>
+        <div style="font-size: 12px; color: rgba(255,255,255,0.9); margin-top: 5px; text-align: center; font-style: italic;">
+            Hỗ trợ tìm kiếm nhanh không dấu
+        </div>
+    </header>
+
+    <!-- Nút chức năng -->
+    <div class="action-buttons">
+        <a href="http://customs.gov.vn:8228/index.jsp?pageId=140&cid=1198" target="_blank" rel="noopener" class="btn btn-primary">🔍 Tra cứu nợ thuế</a>
+      <a href="mau56.html" class="btn btn-outline">📝 Điền và lấy file mềm mẫu 56</a>
     </div>
 
-    <div id="loading">Đang tải dữ liệu...</div>
-    <div id="card-container"></div>
+    <!-- Khu vực hiển thị dữ liệu -->
+    <div id="loading">⏳ Đang kết nối dữ liệu NSNN, vui lòng chờ...</div>
+    <div id="nsnn-grid" class="grid-container" style="display: none;"></div>
 
-    <script>
-        // Biến toàn cục lưu trữ dữ liệu
-        let allData = [];
-
-        // HÀM 1: Lấy dữ liệu JSON
-        async function loadData() {
-            try {
-                // ĐỔI TÊN FILE JSON CỦA BẠN Ở ĐÂY NẾU CẦN
-                const response = await fetch('data.json'); 
-                
-                if (!response.ok) {
-                    throw new Error("Không thể tải file JSON. Đang dùng dữ liệu mẫu.");
-                }
-                allData = await response.json();
-            } catch (error) {
-                console.warn(error);
-                // DỮ LIỆU MẪU ĐỂ TEST KHI CHẠY TRỰC TIẾP KHÔNG QUA SERVER (Bỏ đi khi chạy thực tế)
-                allData = [
-                    {
-                        maDonVi: "02B1",
-                        tenDonVi: "Chi cục Hải quan quản lý hàng gia công",
-                        tenKBNN: "KBNN TP Hồ Chí Minh",
-                        maKBNN: "0170",
-                        diachiMaps: "https://maps.app.goo.gl/abcdef", // Ví dụ có link map
-                        danhSachTaiKhoan: [
-                            { soTaiKhoan: "7111", tenTaiKhoan: "Thu ngân sách nhà nước" },
-                            { soTaiKhoan: "3511", tenTaiKhoan: "Tiền gửi của Kho bạc Nhà nước" }
-                        ]
-                    },
-                    {
-                        maDonVi: "02B2",
-                        tenDonVi: "Chi cục Hải quan quản lý hàng đầu tư",
-                        tenKBNN: "KBNN Quận 1",
-                        maKBNN: "0171",
-                        diachiMaps: "", // Ví dụ bỏ trống link map
-                        danhSachTaiKhoan: [
-                            { soTaiKhoan: "7111", tenTaiKhoan: "Thu ngân sách nhà nước" }
-                        ]
-                    }
-                ];
-            }
-
-            document.getElementById('loading').style.display = 'none';
-            renderCards(allData);
-        }
-
-        // HÀM 2: Hàm tạo thẻ HTML từ dữ liệu
-        function renderCards(dataToRender) {
-            const container = document.getElementById('card-container');
-            container.innerHTML = ''; 
-
-            if (dataToRender.length === 0) {
-                container.innerHTML = '<div style="text-align: center; width: 100%; color: #d32f2f; font-weight: bold;">Không tìm thấy kết quả nào!</div>';
-                return;
-            }
-
-            dataToRender.forEach((item, index) => {
-                
-                // --- Xử lý Cột K: diachiMaps ---
-                let tenKBNNHtml = "";
-                if (item.diachiMaps && item.diachiMaps.trim() !== "") {
-                    tenKBNNHtml = `
-                        <a href="${item.diachiMaps}" target="_blank" class="map-link" title="Xem vị trí trên Google Maps">
-                            ${item.tenKBNN}
-                            <svg class="map-icon" viewBox="0 0 24 24" width="16" height="16">
-                                <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
-                            </svg>
-                        </a>
-                    `;
-                } else {
-                    tenKBNNHtml = item.tenKBNN;
-                }
-
-                // --- Xử lý danh sách tài khoản ---
-                let taiKhoanHtml = "";
-                if (item.danhSachTaiKhoan && item.danhSachTaiKhoan.length > 0) {
-                    taiKhoanHtml = `
-                        <div class="account-group-box">
-                            <div class="account-group-title">Danh sách tài khoản thu (${item.danhSachTaiKhoan.length})</div>
-                    `;
-                    item.danhSachTaiKhoan.forEach(tk => {
-                        taiKhoanHtml += `
-                            <div class="account-item">
-                                <span class="acc-number">${tk.soTaiKhoan}</span>
-                                <span class="acc-name">${tk.tenTaiKhoan}</span>
-                            </div>
-                        `;
-                    });
-                    taiKhoanHtml += `</div>`;
-                }
-
-                // --- Lắp ráp toàn bộ thẻ ---
-                const cardHtml = `
-                    <div class="card">
-                        <h3><span class="stt-badge">#${index + 1}</span> ${item.tenDonVi}</h3>
-                        <div class="info-row">
-                            <span class="info-label">Mã Đơn vị:</span>
-                            <span class="info-value" style="color: #1976d2; font-size: 15px;">${item.maDonVi}</span>
-                        </div>
-                        
-                        <div class="info-row">
-                            <span class="info-label">Tên KBNN:</span>
-                            <span class="info-value">${tenKBNNHtml}</span>
-                        </div>
-                        
-                        <div class="info-row">
-                            <span class="info-label">Mã KBNN:</span>
-                            <span class="info-value">${item.maKBNN}</span>
-                        </div>
-                        
-                        ${taiKhoanHtml}
-                    </div>
-                `;
-
-                container.insertAdjacentHTML('beforeend', cardHtml);
-            });
-        }
-
-        // HÀM 3: Loại bỏ dấu tiếng Việt để tìm kiếm dễ dàng
-        function removeAccents(str) {
-            if (!str) return "";
-            return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
-        }
-
-        // HÀM 4: Xử lý sự kiện khi gõ vào ô tìm kiếm
-        document.getElementById('searchInput').addEventListener('input', function(e) {
-            const keyword = removeAccents(e.target.value);
+    <!-- FOOTER -->
+    <footer>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+            <div style="display: flex; align-items: center; justify-content: flex-start; gap: 15px;">
+                <img src="Logo-doan.png" alt="Logo Đoàn" class="footer-logo" onerror="this.style.display='none'">
+                <p style="margin: 0; font-weight: bold; color: #1976d2; text-align: left; font-size: 13px;">
+                    Một sản phẩm của Đoàn thanh niên<br>Chi cục Hải quan khu vực II
+                </p>
+            </div>
             
-            // Lọc dữ liệu theo Mã Đơn Vị hoặc Tên Đơn Vị
-            const filteredData = allData.filter(item => {
-                const searchMa = removeAccents(item.maDonVi);
-                const searchTen = removeAccents(item.tenDonVi);
-                return searchMa.includes(keyword) || searchTen.includes(keyword);
-            });
+            <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.5); padding: 5px 10px; border-radius: 8px; border: 1px solid rgba(25, 118, 210, 0.2);">
+                <p style="margin: 0; font-size: 10px; color: #1976d2; font-weight: bold; text-transform: uppercase;">Lượt truy cập:</p>
+                <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener" title="hitwebcounter.com">
+                    <img src="https://www.hitwebcounter.com/counter/counter.php?page=21511758&amp;style=0025&amp;nbdigits=5&amp;type=page" alt="hitwebcounter" decoding="async" style="border:0;height:22px;" />
+                </a>
+            </div>
+        </div>
+
+        <div style="border-top: 1px solid rgba(25, 118, 210, 0.1); padding-top: 12px; text-align: center; width: 100%;">
+            <a href="https://maps.app.goo.gl/fGw6eB8g49TQrmxs6" target="_blank" rel="noopener" style="color: #1976d2; text-decoration: none; font-size: clamp(10px, 3vw, 13px); display: inline-flex; align-items: center; gap: 4px; font-weight: bold; padding: 6px 12px; background: rgba(255,255,255,0.7); border-radius: 12px; border: 1px solid rgba(25, 118, 210, 0.2); transition: all 0.2s; white-space: normal; line-height: 1.3;">
+                📍 Đ/c nộp đơn xác nhận: Số 02 Hàm Nghi, Phường Sài Gòn, Thành phố Hồ Chí Minh
+            </a>
+        </div>
+    </footer>
+
+</div>
+
+<script>
+    const API_URL = "data.json"; 
+    
+    let globalData = [];
+
+    // Hàm loại bỏ dấu tiếng Việt để tìm kiếm
+    function removeAccents(str) {
+        if(!str) return "";
+        return str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/đ/g, 'd').replace(/Đ/g, 'D').toLowerCase();
+    }
+
+    // Hàm vẽ giao diện thẻ (Card) - Đã tích hợp tính năng Gộp nhóm
+    function renderData(dataArray) {
+        const container = document.getElementById('nsnn-grid');
+        let html = "";
+        
+        if(!dataArray || dataArray.length === 0) {
+            container.innerHTML = `<div style="grid-column: 1 / -1; text-align: center; padding: 40px; background: rgba(255, 255, 255, 0.65); backdrop-filter: blur(16px); border-radius: 16px; border: 1px solid rgba(255, 255, 255, 1); color: #555; box-shadow: 0 8px 32px rgba(0,0,0,0.08);">
+                <span style="font-size: 40px;">🔍</span><br><br>Không tìm thấy thông tin tài khoản phù hợp với từ khóa của bạn.
+            </div>`;
+            return;
+        }
+
+        // TIẾN HÀNH GỘP NHÓM DỮ LIỆU THEO "MÃ ĐƠN VỊ"
+        const groupedData = {};
+        dataArray.forEach(item => {
+            const key = item.maDonVi || item.coQuanHaiQuan; // Lấy Mã đơn vị làm chìa khóa gộp
             
-            renderCards(filteredData);
+            if (!groupedData[key]) {
+                // Nếu chưa có đơn vị này, tạo mới phần thông tin chung
+                groupedData[key] = {
+                    stt: item.stt,
+                    coQuanHaiQuan: item.coQuanHaiQuan,
+                    maDonVi: item.maDonVi,
+                    maCQThu: item.maCQThu,
+                    tenKBNN: item.tenKBNN,
+                    maKBNN: item.maKBNN,
+                    maNH: item.maNH,
+                    danhSachTaiKhoan: [] // Mảng chứa các tài khoản
+                };
+            }
+            // Đẩy tài khoản vào mảng của đơn vị tương ứng
+            groupedData[key].danhSachTaiKhoan.push({
+                kyHieuTK: item.kyHieuTK,
+                tenTaiKhoan: item.tenTaiKhoan
+            });
         });
 
-        // KÍCH HOẠT CHẠY HÀM KHI MỞ TRANG
-        window.onload = loadData;
+        // VẼ GIAO DIỆN TỪ DỮ LIỆU ĐÃ GỘP
+        Object.values(groupedData).forEach(group => {
+            
+            // Vẽ danh sách các tài khoản con
+            let htmlTaiKhoan = '';
+            group.danhSachTaiKhoan.forEach(tk => {
+                htmlTaiKhoan += `
+                    <div class="account-item">
+                        <span class="acc-number">${tk.kyHieuTK || '-'}</span>
+                        <span class="acc-name">${tk.tenTaiKhoan || 'Chưa cập nhật tên TK'}</span>
+                    </div>
+                `;
+            });
 
-    </script>
+            // Vẽ thẻ Card tổng
+            html += `
+            <div class="card">
+                <h3><span class="stt-badge">#${group.stt || '-'}</span> ${group.coQuanHaiQuan || 'Chưa cập nhật'}</h3>
+                
+                <div class="info-row">
+                    <span class="info-label">Mã Đơn vị:</span>
+                    <span class="info-value" style="font-weight: 900; color: #1976d2;">${group.maDonVi || '-'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Mã cơ quan thu:</span>
+                    <span class="info-value">${group.maCQThu || '-'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Tên KBNN:</span>
+                    <span class="info-value" style="color: #0d47a1; font-size: 15px;">${group.tenKBNN || '-'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Mã KBNN:</span>
+                    <span class="info-value">${group.maKBNN || '-'}</span>
+                </div>
+                <div class="info-row">
+                    <span class="info-label">Mã Ngân hàng:</span>
+                    <span class="info-value">${group.maNH || '-'}</span>
+                </div>
+
+                <!-- Khung chứa các tài khoản gộp -->
+                <div class="account-group-box">
+                    <div class="account-group-title">Danh sách tài khoản thu (${group.danhSachTaiKhoan.length})</div>
+                    ${htmlTaiKhoan}
+                </div>
+            </div>`;
+        });
+        
+        container.innerHTML = html;
+    }
+
+    // Xử lý sự kiện khi gõ vào ô tìm kiếm
+    document.getElementById('search-input').addEventListener('input', function(e) {
+        const kwClean = removeAccents(e.target.value).trim();
+        
+        if (!kwClean) {
+            renderData(globalData);
+            return;
+        }
+
+        const filtered = globalData.filter(item => {
+            const textToSearch = removeAccents(`
+                ${item.stt} ${item.coQuanHaiQuan} ${item.maDonVi} ${item.kyHieuTK} 
+                ${item.tenTaiKhoan} ${item.maCQThu} ${item.maKBNN} 
+                ${item.maNH} ${item.tenKBNN}
+            `);
+            return textToSearch.includes(kwClean);
+        });
+        
+        renderData(filtered);
+    });
+
+    // LẤY DỮ LIỆU TỪ GOOGLE SHEETS
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            globalData = data;
+            document.getElementById('loading').style.display = 'none'; 
+            document.getElementById('nsnn-grid').style.display = 'grid'; 
+            renderData(globalData);
+        })
+        .catch(error => {
+            console.error("Lỗi tải dữ liệu:", error);
+            document.getElementById('loading').innerHTML = "❌ Lỗi: Không thể kết nối đến cơ sở dữ liệu. Vui lòng kiểm tra lại link API.";
+        });
+</script>
+
 </body>
 </html>
