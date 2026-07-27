@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Điền Mẫu 56 - Xác Nhận Hoàn Thành Nghĩa Vụ Thuế</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%); background-attachment: fixed; margin: 0; padding: 20px; color: #333; }
+        .container { max-width: 800px; margin: 0 auto; background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(16px); border-radius: 16px; padding: 30px; box-shadow: 0 8px 32px rgba(0,0,0,0.1); }
+        h2 { color: #1976d2; text-align: center; margin-bottom: 20px; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; color: #444; }
+        input[type="text"], input[type="email"] { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 8px; font-size: 14px; box-sizing: border-box; background: rgba(255,255,255,0.9); }
+        .btn-download { display: block; width: 100%; padding: 15px; background: #1976d2; color: white; border: none; border-radius: 8px; font-size: 16px; font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 20px; }
+        .btn-download:hover { background: #115293; transform: translateY(-2px); }
+        .back-link { display: block; text-align: center; margin-top: 15px; color: #1976d2; text-decoration: none; font-weight: bold; }
+    </style>
+
+    <!-- Kéo các thư viện cần thiết để xử lý file Word (.docx) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docxtemplater/3.37.11/docxtemplater.js"></script>
+    <script src="https://unpkg.com/pizzip@3.1.4/dist/pizzip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pizzip/3.1.4/pizzip-utils.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/FileSaver.js/2.0.5/FileSaver.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h2>📝 ĐIỀN THÔNG TIN MẪU 56</h2>
+    <p style="text-align: center; font-size: 14px; color: #555;">Hệ thống sẽ điền thông tin của bạn vào mẫu Word có sẵn và tải xuống.</p>
+
+    <!-- FORM ĐIỀN THÔNG TIN -->
+    <div class="form-group"><label>1. Tên công ty/HKD cá nhân (IN HOA):</label><input type="text" id="tenCongTy" style="text-transform: uppercase;"></div>
+    <div class="form-group"><label>2. Số Công văn:</label><input type="text" id="soCongVan"></div>
+    <div class="form-group"><label>3. Địa chỉ ĐKDN:</label><input type="text" id="diaChiDKDN"></div>
+    <div class="form-group"><label>4. Địa chỉ liên hệ:</label><input type="text" id="diaChiLienHe"></div>
+    <div class="form-group"><label>5. Điện thoại liên hệ:</label><input type="text" id="dienThoai"></div>
+    <div class="form-group"><label>6. Tên Công ty/Chi nhánh/HKD muốn xác nhận:</label><input type="text" id="tenDonViXacNhan"></div>
+    <div class="form-group"><label>7. Mã số thuế:</label><input type="text" id="maSoThue"></div>
+    <div class="form-group"><label>8. Lý do xác nhận:</label><input type="text" id="lyDo"></div>
+    <div class="form-group"><label>9. Người đại diện theo pháp luật:</label><input type="text" id="nguoiDaiDien"></div>
+    <div class="form-group"><label>10. Email liên hệ:</label><input type="email" id="email"></div>
+
+    <button class="btn-download" id="btn-download" onclick="generateWord()">⬇️ TẢI FILE WORD MẪU 56</button>
+    <a href="index.html" class="back-link">🔙 Quay lại trang tra cứu</a>
+</div>
+
+<script>
+    function generateWord() {
+        const btn = document.getElementById('btn-download');
+        btn.innerText = "Đang tạo file... Vui lòng đợi";
+        btn.style.background = "#888";
+
+        // Bước 1: Đọc file Word mẫu từ GitHub
+        PizZipUtils.getBinaryContent("mau56_template.docx", function(error, content) {
+            if (error) {
+                alert("Lỗi: Không tìm thấy file mau56_template.docx trên máy chủ.");
+                btn.innerText = "⬇️ TẢI FILE WORD MẪU 56";
+                btn.style.background = "#1976d2";
+                return;
+            }
+
+            // Bước 2: Nạp file vào thư viện PizZip
+            var zip = new PizZip(content);
+            var doc = new window.docxtemplater(zip, {
+                paragraphLoop: true,
+                linebreaks: true,
+            });
+
+            // Bước 3: Lấy dữ liệu từ Form để thay thế vào các thẻ {} trong file Word
+            doc.render({
+                tenCongTy: document.getElementById('tenCongTy').value.toUpperCase(),
+                soCongVan: document.getElementById('soCongVan').value,
+                diaChiDKDN: document.getElementById('diaChiDKDN').value,
+                diaChiLienHe: document.getElementById('diaChiLienHe').value,
+                dienThoai: document.getElementById('dienThoai').value,
+                tenDonViXacNhan: document.getElementById('tenDonViXacNhan').value,
+                maSoThue: document.getElementById('maSoThue').value,
+                lyDo: document.getElementById('lyDo').value,
+                nguoiDaiDien: document.getElementById('nguoiDaiDien').value,
+                email: document.getElementById('email').value
+            });
+
+            // Bước 4: Tạo file Word mới và kích hoạt tải xuống
+            var out = doc.getZip().generate({
+                type: "blob",
+                mimeType: "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+            });
+            
+            var mst = document.getElementById('maSoThue').value || "Moi";
+            saveAs(out, "Mau56_XacNhanNoThue_" + mst + ".docx");
+
+            // Trả lại trạng thái nút
+            btn.innerText = "⬇️ TẢI FILE WORD MẪU 56";
+            btn.style.background = "#1976d2";
+        });
+    }
+</script>
+
+</body>
+</html>
