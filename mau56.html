@@ -68,7 +68,6 @@
             #print-area { 
                 display: block; 
                 width: 100%;
-                /* Tối ưu lề để vừa 1 trang */
                 padding: 10mm 20mm 10mm 20mm; 
                 box-sizing: border-box;
                 font-family: 'Times New Roman', Times, serif; 
@@ -79,7 +78,6 @@
             .bold { font-weight: bold; }
             .uppercase { text-transform: uppercase; }
 
-            /* CHỈ THỤT LỀ DÒNG ĐẦU TIÊN CỦA MỖI ĐOẠN VĂN */
             .content-body p {
                 text-indent: 40px; 
                 text-align: justify; 
@@ -88,7 +86,7 @@
             
             /* CSS CHO PHẦN GHI CHÚ */
             .footnote {
-                margin-top: 15px; 
+                margin-top: 20px; 
                 font-size: 12pt; 
             }
             .footnote p {
@@ -181,7 +179,8 @@
     </div>
     
     <!-- PHẦN CHỮ KÝ VÀ NƠI NHẬN -->
-    <table style="width: 100%; border: none; margin-top: 15px;">
+    <!-- Đã tăng margin-top để đẩy toàn bộ khối chữ ký và ghi chú xuống dưới -->
+    <table style="width: 100%; border: none; margin-top: 40px;">
         <tr>
             <td style="width: 50%; vertical-align: top;">
                 <p class="bold" style="margin: 0; font-size: 12pt; font-style: italic;">Nơi nhận:</p>
@@ -191,7 +190,8 @@
             <td style="width: 50%; text-align: center; vertical-align: top;">
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt; white-space: nowrap;">NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</p>
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt;">(HOẶC NGƯỜI ĐƯỢC ỦY QUYỀN)</p>
-                <p class="bold uppercase" style="margin-top: 50px; font-size: 14pt;" id="p_nguoiDaiDien"></p>
+                <!-- Đã tăng khoảng trống chừa chữ ký lên 90px để đẩy tên người đại diện xuống -->
+                <p class="bold uppercase" style="margin-top: 90px; font-size: 14pt;" id="p_nguoiDaiDien"></p>
             </td>
         </tr>
     </table>
