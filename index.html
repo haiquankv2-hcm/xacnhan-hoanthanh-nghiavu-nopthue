@@ -43,7 +43,7 @@
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
         /* THANH TÌM KIẾM */
-        .search-bar { background: rgba(255, 255, 255, 0.95); color: #444; padding: 16px 20px; border-radius: 12px; border: 2px solid #1976d2; display: flex; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08); max-width: 100%; margin: 0 auto 10px auto; }
+        .search-bar { background: rgba(255, 255, 255, 0.95); color: #444; padding: 16px 20px; border-radius: 12px; border: 2px solid #1976d2; display: flex; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08); max-width: 100%; margin: 0 auto 15px auto; }
         .search-bar input { border: none; outline: none; flex-grow: 1; font-size: 15px; width: 100%; background: transparent; font-family: 'Roboto', Arial, sans-serif; }
         
         /* KHU VỰC LƯỚI DATA NSNN */
@@ -66,7 +66,7 @@
         .acc-name { font-size: 13px; color: #455a64; font-weight: 500;}
         .loading { text-align: center; font-size: 16px; color: #1976d2; padding: 20px; font-weight: bold; }
 
-        /* ================= CSS BẢNG TIỂU MỤC (TỐI ƯU MOBILE) ================= */
+        /* ================= CSS BẢNG TIỂU MỤC & NGÂN HÀNG (TỐI ƯU MOBILE) ================= */
         .table-wrapper { overflow-x: auto; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid #cfd8dc; background: white;}
         .customs-table { width: 100%; border-collapse: collapse; min-width: 340px; }
         .customs-table th { background: #1976d2; color: white; padding: 12px 8px; font-size: 14px; text-align: center; font-weight: bold; position: sticky; top: 0; white-space: nowrap; border: 1px solid #1565c0; }
@@ -82,7 +82,7 @@
         .sub-row td.col-content { padding-left: 28px; font-weight: normal; color: #555; position: relative; font-size: 13px;}
         .sub-row td.col-content::before { content: "↳"; position: absolute; left: 10px; color: #999; font-weight: bold;}
         
-        /* CSS nhãn dán cho Mã Tiểu Mục */
+        /* CSS nhãn dán cho Mã */
         .tm-badge { background: #e8f5e9; color: #2e7d32; font-weight: bold; padding: 4px 8px; border-radius: 6px; display: inline-block; white-space: nowrap; border: 1px solid #a5d6a7; font-size: 14px;}
         .tm-badge-multi { background: #fff3e0; color: #e65100; font-weight: bold; padding: 4px 6px; border-radius: 6px; display: inline-block; border: 1px solid #ffcc80; font-size: 13px; margin: 2px;}
 
@@ -143,6 +143,13 @@
             🏦 Thông tin thu NSNN <span>▼</span>
         </button>
         <div id="sec-nsnn" class="dropdown-content">
+            
+            <!-- KHUNG THÔNG BÁO CĂN CỨ NSNN -->
+            <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-left: 5px solid #ff9800; margin-bottom: 20px; font-size: 14px; line-height: 1.5; color: #e65100; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <strong>📌 Căn cứ:</strong><br>
+                Thông báo số 12377/TB-CHQ ngày 03/07/2025 và Thông báo số 11801/TB-CHQ ngày 30/06/2025 về thông báo thông tin tài khoản thu NSNN của Cục trưởng Cục hải quan.
+            </div>
+
             <div class="search-bar">
                 <input type="text" id="search-nsnn-input" placeholder="🔍 Nhập từ khóa (Mã đơn vị, Tên KBNN, Mã NH...)">
             </div>
@@ -188,7 +195,7 @@
             </div>
         </div>
 
-        <!-- 5. DROPDOWN TIỂU MỤC (ĐÃ CHÈN BẢNG DỮ LIỆU) -->
+        <!-- 5. DROPDOWN TIỂU MỤC -->
         <button class="menu-btn accordion-toggle" onclick="toggleSection('sec-tieumuc', this)">
             📑 Tra cứu Tiểu mục <span>▼</span>
         </button>
@@ -200,9 +207,14 @@
                 Thông tư Số 130/2025/TT-BTC về QUY ĐỊNH HỆ THỐNG MỤC LỤC NGÂN SÁCH NHÀ NƯỚC ngày 24/12/2025 của Bộ trưởng Bộ Tài chính.
             </div>
 
+            <!-- Ô TÌM KIẾM ĐƯỢC CHUYỂN LÊN ĐÂY -->
+            <div class="search-bar">
+                <input type="text" id="search-tieumuc-input" placeholder="🔍 Nhập Tên hoặc Mã tiểu mục cần tìm (Lọc cả bảng và dữ liệu dưới)...">
+            </div>
+
             <!-- BẢNG DANH SÁCH TIỂU MỤC -->
             <div class="table-wrapper">
-                <table class="customs-table">
+                <table class="customs-table" id="table-tieumuc">
                     <thead>
                         <tr>
                             <th class="col-stt">STT</th>
@@ -222,7 +234,6 @@
                         <tr><td class="col-stt">9</td><td class="col-content">Thuế tự vệ</td><td class="col-tm"><span class="tm-badge">1954</span></td></tr>
                         <tr><td class="col-stt">10</td><td class="col-content">Thuế phòng vệ khác</td><td class="col-tm"><span class="tm-badge">1999</span></td></tr>
                         
-                        <!-- MỤC 11 CÓ CÁC MỤC CON -->
                         <tr><td class="col-stt">11</td><td class="col-content" style="font-weight: bold; color: #d32f2f;">Tiền chậm nộp thuế</td><td class="col-tm"><span class="tm-badge" style="background: #ffebee; color: #d32f2f; border-color: #ffcdd2;">4900</span></td></tr>
                         <tr class="sub-row"><td class="col-stt"></td><td class="col-content">Các khoản thu khác ngành Hải quan</td><td class="col-tm"><span class="tm-badge">4905</span></td></tr>
                         <tr class="sub-row"><td class="col-stt"></td><td class="col-content">Tiền chậm nộp thuế xuất khẩu</td><td class="col-tm"><span class="tm-badge">4935</span></td></tr>
@@ -236,10 +247,8 @@
                             <td class="col-stt">12</td>
                             <td class="col-content">Phạt vi phạm hành chính</td>
                             <td class="col-tm">
-                                <span class="tm-badge-multi">4253</span>
-                                <span class="tm-badge-multi">4265</span>
-                                <span class="tm-badge-multi">4275</span>
-                                <span class="tm-badge-multi">4299</span>
+                                <span class="tm-badge-multi">4253</span> <span class="tm-badge-multi">4265</span>
+                                <span class="tm-badge-multi">4275</span> <span class="tm-badge-multi">4299</span>
                             </td>
                         </tr>
                         <tr><td class="col-stt">13</td><td class="col-content">Tiền chậm nộp phạt vi phạm hành chính</td><td class="col-tm"><span class="tm-badge">4273</span></td></tr>
@@ -251,14 +260,52 @@
                 </table>
             </div>
 
-            <!-- PHẦN TÌM KIẾM JSON CŨ (Giữ lại làm tùy chọn bên dưới) -->
-            <div style="border-top: 1px dashed #cfd8dc; margin-top: 25px; padding-top: 20px;">
-                <h4 style="margin: 0 0 10px 0; color: #1976d2; font-size: 15px;">🔍 Tra cứu các tiểu mục khác:</h4>
-                <div class="search-bar">
-                    <input type="text" id="search-tieumuc-input" placeholder="Nhập Tên tiểu mục hoặc Mã tiểu mục...">
-                </div>
-                <div id="loading-tieumuc" class="loading">⏳ Đang tải dữ liệu Tiểu mục...</div>
-                <div id="tieumuc-grid" class="grid-container" style="display: none;"></div>
+            <!-- NƠI HIỂN THỊ DỮ LIỆU TỪ TIEUMUC.JSON (Nếu có) -->
+            <div id="loading-tieumuc" class="loading" style="display: none;">⏳ Đang tải dữ liệu bổ sung...</div>
+            <div id="tieumuc-grid" class="grid-container" style="display: none;"></div>
+        </div>
+
+        <!-- 6. MỤC MỚI: DROPDOWN NGÂN HÀNG PHỐI HỢP THU -->
+        <button class="menu-btn accordion-toggle" onclick="toggleSection('sec-nganhang', this)">
+            💳 Ngân hàng phối hợp thu <span>▼</span>
+        </button>
+        <div id="sec-nganhang" class="dropdown-content">
+            
+            <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 5px solid #1976d2; margin-bottom: 15px; font-size: 14px; line-height: 1.5; color: #0d47a1; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
+                <strong>📌 Căn cứ:</strong><br>
+                <a href="http://customs.gov.vn:8228/index.jsp?pageId=4&cid=1200" target="_blank" style="color: #d32f2f; font-weight: bold; text-decoration: none;">Danh sách các Ngân hàng phối hợp thu với Tổng cục Hải quan</a>
+            </div>
+
+            <div class="search-bar">
+                <input type="text" id="search-nganhang-input" placeholder="🔍 Nhập tên hoặc mã Ngân hàng (VD: Vietcombank, BIDV...)">
+            </div>
+
+            <div class="table-wrapper">
+                <table class="customs-table" id="table-nganhang">
+                    <thead>
+                        <tr>
+                            <th class="col-stt">STT</th>
+                            <th>Tên Ngân hàng</th>
+                            <th>Tên viết tắt</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td class="col-stt">1</td><td class="col-content">Ngân hàng TMCP Ngoại thương Việt Nam</td><td class="col-tm"><span class="tm-badge">Vietcombank</span></td></tr>
+                        <tr><td class="col-stt">2</td><td class="col-content">Ngân hàng TMCP Công thương Việt Nam</td><td class="col-tm"><span class="tm-badge">VietinBank</span></td></tr>
+                        <tr><td class="col-stt">3</td><td class="col-content">Ngân hàng TMCP Đầu tư và Phát triển Việt Nam</td><td class="col-tm"><span class="tm-badge">BIDV</span></td></tr>
+                        <tr><td class="col-stt">4</td><td class="col-content">Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam</td><td class="col-tm"><span class="tm-badge">Agribank</span></td></tr>
+                        <tr><td class="col-stt">5</td><td class="col-content">Ngân hàng TMCP Quân đội</td><td class="col-tm"><span class="tm-badge">MBBank</span></td></tr>
+                        <tr><td class="col-stt">6</td><td class="col-content">Ngân hàng TMCP Á Châu</td><td class="col-tm"><span class="tm-badge">ACB</span></td></tr>
+                        <tr><td class="col-stt">7</td><td class="col-content">Ngân hàng TMCP Kỹ Thương Việt Nam</td><td class="col-tm"><span class="tm-badge">Techcombank</span></td></tr>
+                        <tr><td class="col-stt">8</td><td class="col-content">Ngân hàng TMCP Sài Gòn Thương Tín</td><td class="col-tm"><span class="tm-badge">Sacombank</span></td></tr>
+                        <tr><td class="col-stt">9</td><td class="col-content">Ngân hàng TMCP Phát triển TP. Hồ Chí Minh</td><td class="col-tm"><span class="tm-badge">HDBank</span></td></tr>
+                        <tr><td class="col-stt">10</td><td class="col-content">Ngân hàng TMCP Quốc tế Việt Nam</td><td class="col-tm"><span class="tm-badge">VIB</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+            
+            <div style="font-size: 13px; color: #555; text-align: center; margin-top: 10px;">
+                <em>* Bấm vào link căn cứ phía trên để xem danh sách đầy đủ mới nhất.</em>
             </div>
 
         </div>
@@ -407,10 +454,12 @@
             document.getElementById('loading-nsnn').style.display = 'none'; 
             document.getElementById('nsnn-grid').style.display = 'grid'; 
             renderNSNN(globalNSNN);
-        }).catch(err => document.getElementById('loading-nsnn').innerHTML = "❌ Lỗi: Không thể tải data.json");
+        }).catch(err => {
+            // Im lặng nếu không có file data.json
+        });
 
     // =====================================
-    // 5. XỬ LÝ DROPDOWN TIỂU MỤC (PHẦN DỮ LIỆU JSON)
+    // 5. XỬ LÝ TÌM KIẾM CHO TIỂU MỤC (BẢNG HTML & JSON)
     // =====================================
     const API_TIEUMUC = "tieumuc.json"; 
     let globalTieuMuc = [];
@@ -420,7 +469,7 @@
         let html = "";
         
         if(!dataArray || dataArray.length === 0) {
-            container.innerHTML = `<div style="grid-column: 1/-1; text-align: center; padding: 30px; color: #d32f2f; font-weight: bold; background: rgba(255,255,255,0.8); border-radius: 12px;">Không tìm thấy tiểu mục nào!</div>`;
+            container.innerHTML = ``;
             return;
         }
 
@@ -435,28 +484,66 @@
             </div>`;
         });
         container.innerHTML = html;
+        container.style.display = 'grid';
     }
 
     document.getElementById('search-tieumuc-input').addEventListener('input', function(e) {
         const kw = removeAccents(e.target.value).trim();
-        if (!kw) { renderTieuMuc(globalTieuMuc); return; }
-        const filtered = globalTieuMuc.filter(item => {
-            const str = removeAccents(`${item.maTieuMuc} ${item.tenTieuMuc}`);
-            return str.includes(kw);
+        
+        // 5.1 Lọc dữ liệu trong file JSON (nếu có)
+        if (!kw) { 
+            renderTieuMuc(globalTieuMuc); 
+        } else {
+            const filtered = globalTieuMuc.filter(item => {
+                const str = removeAccents(`${item.maTieuMuc} ${item.tenTieuMuc}`);
+                return str.includes(kw);
+            });
+            renderTieuMuc(filtered);
+        }
+
+        // 5.2 Lọc dữ liệu trực tiếp trong BẢNG CỐ ĐỊNH HTML
+        const tableRows = document.querySelectorAll('#table-tieumuc tbody tr');
+        let hasVisibleRow = false;
+        
+        tableRows.forEach(row => {
+            const text = removeAccents(row.innerText);
+            if (text.includes(kw)) {
+                row.style.display = '';
+                hasVisibleRow = true;
+            } else {
+                row.style.display = 'none';
+            }
         });
-        renderTieuMuc(filtered);
     });
 
+    // Thử load file tieumuc.json nếu có tải lên
     fetch(API_TIEUMUC)
         .then(res => res.json())
         .then(data => {
             globalTieuMuc = data;
             document.getElementById('loading-tieumuc').style.display = 'none'; 
-            document.getElementById('tieumuc-grid').style.display = 'grid'; 
             renderTieuMuc(globalTieuMuc);
         }).catch(err => {
-            document.getElementById('loading-tieumuc').innerHTML = "⚠️ Chưa kết nối được file dữ liệu Tiểu mục (tieumuc.json).";
+            // Im lặng nếu không có file, chỉ dùng bảng HTML
+            document.getElementById('loading-tieumuc').style.display = 'none'; 
         });
+
+    // =====================================
+    // 6. XỬ LÝ TÌM KIẾM NGÂN HÀNG PHỐI HỢP THU
+    // =====================================
+    document.getElementById('search-nganhang-input').addEventListener('input', function(e) {
+        const kw = removeAccents(e.target.value).trim();
+        const tableRows = document.querySelectorAll('#table-nganhang tbody tr');
+        
+        tableRows.forEach(row => {
+            const text = removeAccents(row.innerText);
+            if (text.includes(kw)) {
+                row.style.display = '';
+            } else {
+                row.style.display = 'none';
+            }
+        });
+    });
 
 </script>
 
