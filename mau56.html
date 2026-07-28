@@ -119,6 +119,13 @@
     <div class="form-group"><label>7. Lý do xác nhận:</label><input type="text" id="lyDo" placeholder="Ghi rõ để giải thể, đóng mã số thuế, mục đích khác..."></div>
     <div class="form-group"><label>8. Người đại diện theo pháp luật (Ký tên):</label><input type="text" id="nguoiDaiDien"></div>
 
+    <!-- KHUNG GHI CHÚ HIỂN THỊ TRÊN WEB -->
+    <div style="background: #fff9c4; padding: 15px; border-radius: 8px; border-left: 5px solid #fbc02d; margin-top: 20px; font-size: 14px; line-height: 1.5; color: #333;">
+        <p style="margin: 0 0 5px 0;"><span style="font-weight: bold; font-style: italic;">Ghi chú:</span> Hồ sơ Công ty gửi kèm:</p>
+        <p style="margin: 5px 0 5px 10px; text-align: justify;">- Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng nhận ưu đãi đầu tư; Giấy chứng nhận đăng ký mã số thuế: bản chụp (có ký tên, đóng dấu của Công ty) hoặc bản sao nếu có;</p>
+        <p style="margin: 0 0 0 10px; text-align: justify;">- Trường hợp xác nhận hoàn thành nghĩa vụ nộp thuế đối với Chi nhánh Công ty thì hồ sơ như nêu trên phải bao gồm của Công ty và Chi nhánh Công ty.</p>
+    </div>
+
     <button class="btn-download" onclick="exportPDF()">🖨️ XUẤT FILE PDF / IN MẪU ĐÃ ĐIỀN</button>
     <a href="mau56.docx" download class="btn-word">📄 TẢI MẪU 56 (FILE WORD) ĐỂ TỰ ĐIỀN</a>
     <a href="index.html" class="back-link">🔙 Quay lại trang tra cứu</a>
@@ -190,7 +197,7 @@
             <td style="width: 50%; text-align: center; vertical-align: top;">
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt; white-space: nowrap;">NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</p>
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt;">(HOẶC NGƯỜI ĐƯỢC ỦY QUYỀN)</p>
-                <!-- Đã tăng khoảng trống chừa chữ ký lên 90px để đẩy tên người đại diện xuống -->
+                <!-- Đã tăng khoảng trống chừa chữ ký lên 140px để đẩy tên người đại diện xuống -->
                 <p class="bold uppercase" style="margin-top: 140px; font-size: 14pt;" id="p_nguoiDaiDien"></p>
             </td>
         </tr>
