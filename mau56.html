@@ -68,11 +68,12 @@
             #print-area { 
                 display: block; 
                 width: 100%;
-                padding: 20mm 25mm 20mm 25mm; 
+                /* Giảm lề trên và dưới xuống 15mm để có thêm không gian chứa phần Ghi chú */
+                padding: 15mm 25mm 15mm 25mm; 
                 box-sizing: border-box;
                 font-family: 'Times New Roman', Times, serif; 
                 font-size: 14pt; 
-                line-height: 1.4;
+                line-height: 1.3; /* Thu gọn khoảng cách các dòng một chút */
                 color: black;
             }
             .bold { font-weight: bold; }
@@ -82,22 +83,22 @@
             .content-body p {
                 text-indent: 40px; 
                 text-align: justify; 
-                margin: 8px 0;
+                margin: 6px 0; /* Giảm margin giữa các đoạn văn */
             }
             
             /* CSS CHO PHẦN GHI CHÚ */
             .footnote {
-                margin-top: 40px;
-                font-size: 12pt; /* Cỡ chữ nhỏ hơn nội dung chính một chút */
+                margin-top: 15px; /* Giảm khoảng cách đẩy phần ghi chú xuống */
+                font-size: 12pt; 
             }
             .footnote p {
-                text-indent: 0 !important; /* Hủy thụt lề của Ghi chú */
+                text-indent: 0 !important; 
                 margin: 4px 0;
                 text-align: justify;
             }
             .footnote-item {
                 padding-left: 15px;
-                text-indent: -15px !important; /* Để dấu gạch ngang đưa ra ngoài, đoạn văn bọc vào trong */
+                text-indent: -15px !important; 
             }
         }
     </style>
@@ -131,7 +132,7 @@
     <p class="bold" style="text-align: right; margin: 0 0 10px 0; font-size: 13pt;">Mẫu số 56</p>
 
     <!-- CỘT TIÊU ĐỀ TRÊN CÙNG -->
-    <table style="width: 100%; border: none; margin-bottom: 20px; border-spacing: 0;">
+    <table style="width: 100%; border: none; margin-bottom: 15px; border-spacing: 0;">
         <tr>
             <td style="width: 45%; text-align: center; vertical-align: top; padding-bottom: 2px;">
                 <p class="uppercase bold" style="margin: 0; font-size: 13pt; word-wrap: break-word; white-space: normal; line-height: 1.2;" id="p_tenCongTy_header"></p>
@@ -162,7 +163,7 @@
     
     <!-- NỘI DUNG CHÍNH -->
     <div class="content-body">
-        <p style="text-align: center; margin-bottom: 35px; text-indent: 0;"><span class="bold">Kính gửi:</span> Chi cục Hải quan khu vực II</p>
+        <p style="text-align: center; margin-bottom: 20px; text-indent: 0;"><span class="bold">Kính gửi:</span> Chi cục Hải quan khu vực II</p>
         
         <p>Căn cứ Khoản … Điều … Thông tư số 86/2026/TT-BTC ngày 30/06/2026 của Bộ Trưởng Bộ Tài chính quy định về quản lý thuế đối với hàng hóa xuất khẩu, nhập khẩu.</p>
         
@@ -180,7 +181,8 @@
     </div>
     
     <!-- PHẦN CHỮ KÝ VÀ NƠI NHẬN -->
-    <table style="width: 100%; border: none; margin-top: 30px;">
+    <!-- Giảm margin-top xuống 15px để kéo bảng chữ ký lên -->
+    <table style="width: 100%; border: none; margin-top: 15px;">
         <tr>
             <td style="width: 50%; vertical-align: top;">
                 <p class="bold" style="margin: 0; font-size: 12pt; font-style: italic;">Nơi nhận:</p>
@@ -190,7 +192,8 @@
             <td style="width: 50%; text-align: center; vertical-align: top;">
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt; white-space: nowrap;">NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</p>
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt;">(HOẶC NGƯỜI ĐƯỢC ỦY QUYỀN)</p>
-                <p class="bold uppercase" style="margin-top: 100px; font-size: 14pt;" id="p_nguoiDaiDien"></p>
+                <!-- Giảm margin-top chừa chữ ký từ 100px xuống 70px -->
+                <p class="bold uppercase" style="margin-top: 70px; font-size: 14pt;" id="p_nguoiDaiDien"></p>
             </td>
         </tr>
     </table>
