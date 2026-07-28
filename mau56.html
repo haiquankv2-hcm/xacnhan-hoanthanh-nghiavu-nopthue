@@ -50,7 +50,7 @@
         @media print {
             @page { 
                 size: A4; 
-                margin: 0; /* Cho lề bằng 0 để triệt tiêu Tiêu đề web và Ngày giờ mặc định của trình duyệt */
+                margin: 0; 
             } 
             
             body, html { background: white !important; margin: 0; padding: 0; }
@@ -59,11 +59,10 @@
             #print-area { 
                 display: block; 
                 width: 100%;
-                /* Bù lại lề chuẩn của tờ A4 bằng padding: Trái/phải 25mm, Trên/dưới 20mm */
                 padding: 20mm 25mm 20mm 25mm; 
                 box-sizing: border-box;
                 font-family: 'Times New Roman', Times, serif; 
-                font-size: 14pt; /* Cỡ chữ chuẩn chung */
+                font-size: 14pt; 
                 line-height: 1.3;
                 color: black;
             }
@@ -71,9 +70,9 @@
             .bold { font-weight: bold; }
             .uppercase { text-transform: uppercase; }
 
-            /* Căn lề thụt vào cho phần nội dung (canh thẳng với chữ Số CV) */
-            .indent-content {
-                padding-left: 15%; /* Có thể chỉnh % này để lùi ra/vào cho khớp với chữ "Số CV" */
+            /* CHỈ THỤT LỀ DÒNG ĐẦU TIÊN CỦA MỖI ĐOẠN VĂN */
+            .indent-content p {
+                text-indent: 14%; /* Căn chỉnh tỷ lệ này (ví dụ 14%, 15% hoặc 80px) để chữ cái đầu tiên thẳng tắp với chữ Số CV ở trên */
             }
         }
     </style>
@@ -100,14 +99,12 @@
     <a href="index.html" class="back-link">🔙 Quay lại trang tra cứu</a>
 </div>
 
-<!-- KHU VỰC 2: BẢN IN PDF (CHỈ HIỆN KHI BẤM NÚT IN) -->
+<!-- KHU VỰC 2: BẢN IN PDF -->
 <div id="print-area">
     <!-- CỘT TIÊU ĐỀ TRÊN CÙNG -->
     <table style="width: 100%; border: none; margin-bottom: 20px; border-spacing: 0;">
-        <!-- Hàng 1: Tên Công ty & Quốc hiệu -->
         <tr>
             <td style="width: 45%; text-align: center; vertical-align: top; padding-bottom: 2px;">
-                <!-- Đã thêm word-wrap để chữ dài tự xuống dòng -->
                 <p class="uppercase bold" style="margin: 0; font-size: 13pt; word-wrap: break-word; white-space: normal; line-height: 1.2;" id="p_tenCongTy_header"></p>
             </td>
             <td style="width: 55%; text-align: center; vertical-align: top; padding-bottom: 2px;">
@@ -115,7 +112,6 @@
                 <p class="bold" style="margin: 0; font-size: 14pt;">Độc lập - Tự do - Hạnh phúc</p>
             </td>
         </tr>
-        <!-- Hàng 2: Gạch ngang (Luôn thẳng hàng với nhau) -->
         <tr>
             <td style="width: 45%; text-align: center; vertical-align: top;">
                 <hr style="width: 40%; border-top: 1px solid black; margin: 0 auto;">
@@ -124,11 +120,9 @@
                 <hr style="width: 45%; border-top: 1px solid black; margin: 0 auto;">
             </td>
         </tr>
-        <!-- Hàng 3: Số Công Văn & Ngày tháng -->
         <tr>
             <td style="width: 45%; text-align: center; vertical-align: top;">
                 <p style="margin: 5px 0 0 0; font-size: 14pt;">Số: <span id="p_soCongVan"></span></p>
-                <!-- Chữ V/v nằm sát Số CV -->
                 <p style="margin: 5px 0 0 0; font-size: 12pt;">V/v đề nghị xác nhận hoàn thành nghĩa vụ nộp thuế</p>
             </td>
             <td style="width: 55%; text-align: center; vertical-align: top;">
@@ -141,7 +135,7 @@
     <div style="text-align: justify;">
         <p style="text-align: center; margin-bottom: 35px;"><span class="bold">Kính gửi:</span> Chi cục Hải quan khu vực II</p>
         
-        <!-- Khối được lùi lề vào trong -->
+        <!-- Khối áp dụng lùi đầu dòng cho thẻ p -->
         <div class="indent-content">
             <p>Căn cứ Khoản … Điều … Thông tư số 86/2026/TT-BTC ngày 30/06/2026 của Bộ Trưởng Bộ Tài chính quy định về quản lý thuế đối với hàng hóa xuất khẩu, nhập khẩu.</p>
             
