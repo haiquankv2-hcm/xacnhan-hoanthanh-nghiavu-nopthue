@@ -97,7 +97,7 @@
         <label>1. Tên công ty/Cơ quan NN có thẩm quyền:</label>
         <input type="text" id="tenCongTy" placeholder="VD: CÔNG TY TNHH ABC" style="text-transform: uppercase;">
     </div>
-    <div class="form-group"><label>2. Số Công văn:</label><input type="text" id="soCongVan" placeholder="VD: 12/CV-ABC"></div>
+   <div class="form-group"><label>2. Số Công văn:</label><input type="text" id="soCongVan" placeholder="VD: 01/CV; 01/CV-XNNT;...." style="text-transform: uppercase;"></div>
     <div class="form-group"><label>3. Địa chỉ (ghi trên Giấy chứng nhận ĐKDN):</label><input type="text" id="diaChiDKDN"></div>
      <div class="form-group"><label>4. Địa chỉ liên hệ:</label><input type="text" id="diaChiLienHe" placeholder="Ghi rõ địa chỉ sau sát nhập và SĐT liên hệ"></div>
     <div class="form-group"><label>5. Tên Đơn vị muốn xác nhận (Công ty/Chi nhánh/HKD):</label><input type="text" id="tenDonViXacNhan"></div>
@@ -182,7 +182,7 @@
     function exportPDF() {
         document.getElementById('p_tenCongTy_header').innerText = document.getElementById('tenCongTy').value;
         document.getElementById('p_tenCongTy').innerText = document.getElementById('tenCongTy').value;
-        document.getElementById('p_soCongVan').innerText = document.getElementById('soCongVan').value;
+        document.getElementById('p_soCongVan').innerText = document.getElementById('soCongVan').value.toUpperCase();
         document.getElementById('p_diaChiDKDN').innerText = document.getElementById('diaChiDKDN').value;
         document.getElementById('p_diaChiLienHe').innerText = document.getElementById('diaChiLienHe').value;
         document.getElementById('p_tenDonViXacNhan').innerText = document.getElementById('tenDonViXacNhan').value;
