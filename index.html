@@ -70,7 +70,7 @@
         .table-wrapper { overflow-x: auto; margin-bottom: 25px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.08); border: 1px solid #cfd8dc; background: white;}
         .customs-table { width: 100%; border-collapse: collapse; min-width: 340px; }
         .customs-table th { background: #1976d2; color: white; padding: 12px 8px; font-size: 14px; text-align: center; font-weight: bold; position: sticky; top: 0; white-space: nowrap; border: 1px solid #1565c0; }
-        .customs-table td { padding: 12px 10px; font-size: 14px; border-bottom: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; color: #333; vertical-align: middle; line-height: 1.4; }
+        .customs-table td { padding: 12px 10px; font-size: 14px; border-bottom: 1px solid #e0e0e0; border-right: 1px solid #e0e0e0; color: #333; vertical-align: middle; line-height: 1.4; word-wrap: break-word;}
         .customs-table td:last-child { border-right: none; }
         .customs-table tr:nth-child(even) { background-color: #f8fafd; }
         .customs-table tr:hover { background-color: #e3f2fd; }
@@ -166,7 +166,7 @@
         <div id="sec-chuong" class="dropdown-content">
             <div style="text-align: center; padding: 30px 20px; background: rgba(255, 255, 255, 0.7); border-radius: 16px; border: 1px solid rgba(255,255,255,0.9); box-shadow: 0 8px 32px rgba(0,0,0,0.05);">
                 <h3 style="color: #1565c0; margin-bottom: 10px; font-size: 20px;">Tra cứu thông tin Chương của Doanh nghiệp</h3>
-                <p style="color: #555; margin-bottom: 25px; line-height: 1.5;">Vui lòng truy cập trang Thông tin điện tử của Cục Thuế để tra cứu chính xác mã Chương đóng thuế của doanh nghiệp.</p>
+                <p style="color: #555; margin-bottom: 25px; line-height: 1.5;">Vui lòng truy cập trang Thông tin điện tử của Tổng cục Thuế để tra cứu chính xác mã Chương đóng thuế của doanh nghiệp.</p>
                 
                 <a href="https://tracuunnt.gdt.gov.vn/tcnnt/mstdn.jsp" target="_blank" rel="noopener" class="menu-btn link-btn" style="display: inline-flex; width: auto; padding: 12px 25px;">
                     🌐 Truy cập Web Cục Thuế
@@ -209,7 +209,7 @@
 
             <!-- Ô TÌM KIẾM ĐƯỢC CHUYỂN LÊN ĐÂY -->
             <div class="search-bar">
-                <input type="text" id="search-tieumuc-input" placeholder="🔍 Nhập Tên hoặc Mã tiểu mục cần tìm (Lọc cả bảng và dữ liệu dưới)...">
+                <input type="text" id="search-tieumuc-input" placeholder="🔍 Nhập Tên hoặc Mã tiểu mục cần tìm...">
             </div>
 
             <!-- BẢNG DANH SÁCH TIỂU MỤC -->
@@ -273,7 +273,7 @@
             
             <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 5px solid #1976d2; margin-bottom: 15px; font-size: 14px; line-height: 1.5; color: #0d47a1; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 <strong>📌 Căn cứ:</strong><br>
-                <a href="http://customs.gov.vn:8228/index.jsp?pageId=4&cid=1200" target="_blank" style="color: #d32f2f; font-weight: bold; text-decoration: none;">Danh sách các Ngân hàng phối hợp thu với Cục Hải quan</a>
+                <a href="http://customs.gov.vn:8228/index.jsp?pageId=4&cid=1200" target="_blank" style="color: #d32f2f; font-weight: bold; text-decoration: none;">Danh sách các Ngân hàng phối hợp thu với Tổng cục Hải quan</a>
             </div>
 
             <div class="search-bar">
@@ -290,16 +290,54 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr><td class="col-stt">1</td><td class="col-content">Ngân hàng TMCP Ngoại thương Việt Nam</td><td class="col-tm"><span class="tm-badge">Vietcombank</span></td></tr>
-                        <tr><td class="col-stt">2</td><td class="col-content">Ngân hàng TMCP Công thương Việt Nam</td><td class="col-tm"><span class="tm-badge">VietinBank</span></td></tr>
-                        <tr><td class="col-stt">3</td><td class="col-content">Ngân hàng TMCP Đầu tư và Phát triển Việt Nam</td><td class="col-tm"><span class="tm-badge">BIDV</span></td></tr>
-                        <tr><td class="col-stt">4</td><td class="col-content">Ngân hàng Nông nghiệp và Phát triển Nông thôn Việt Nam</td><td class="col-tm"><span class="tm-badge">Agribank</span></td></tr>
-                        <tr><td class="col-stt">5</td><td class="col-content">Ngân hàng TMCP Quân đội</td><td class="col-tm"><span class="tm-badge">MBBank</span></td></tr>
-                        <tr><td class="col-stt">6</td><td class="col-content">Ngân hàng TMCP Á Châu</td><td class="col-tm"><span class="tm-badge">ACB</span></td></tr>
-                        <tr><td class="col-stt">7</td><td class="col-content">Ngân hàng TMCP Kỹ Thương Việt Nam</td><td class="col-tm"><span class="tm-badge">Techcombank</span></td></tr>
-                        <tr><td class="col-stt">8</td><td class="col-content">Ngân hàng TMCP Sài Gòn Thương Tín</td><td class="col-tm"><span class="tm-badge">Sacombank</span></td></tr>
-                        <tr><td class="col-stt">9</td><td class="col-content">Ngân hàng TMCP Phát triển TP. Hồ Chí Minh</td><td class="col-tm"><span class="tm-badge">HDBank</span></td></tr>
-                        <tr><td class="col-stt">10</td><td class="col-content">Ngân hàng TMCP Quốc tế Việt Nam</td><td class="col-tm"><span class="tm-badge">VIB</span></td></tr>
+                        <tr><td class="col-stt">1</td><td class="col-content">Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV)</td><td class="col-tm"><span class="tm-badge">BIDV</span></td></tr>
+                        <tr><td class="col-stt">2</td><td class="col-content">Ngân hàng TMCP công thương Việt Nam (VietinBank)</td><td class="col-tm"><span class="tm-badge">Vietinbank</span></td></tr>
+                        <tr><td class="col-stt">3</td><td class="col-content">Ngân hàng TMCP Quân đội (Mbbank)</td><td class="col-tm"><span class="tm-badge">MB</span></td></tr>
+                        <tr><td class="col-stt">4</td><td class="col-content">Ngân hàng TMCP Ngoại thương Việt Nam (Vietcombank)</td><td class="col-tm"><span class="tm-badge">Vietcombank</span></td></tr>
+                        <tr><td class="col-stt">5</td><td class="col-content">Ngân hàng TMCP Quốc tế (VIB)</td><td class="col-tm"><span class="tm-badge">VIB</span></td></tr>
+                        <tr><td class="col-stt">6</td><td class="col-content">Ngân hàng TMCP Kỹ thương Việt Nam (Techcombank)</td><td class="col-tm"><span class="tm-badge">Techcombank</span></td></tr>
+                        <tr><td class="col-stt">7</td><td class="col-content">Ngân hàng TMCP Xuất nhập khẩu Việt Nam (Eximbank)</td><td class="col-tm"><span class="tm-badge">Eximbank</span></td></tr>
+                        <tr><td class="col-stt">8</td><td class="col-content">Ngân hàng Nông nghiệp và phát triển nông thôn Việt Nam</td><td class="col-tm"><span class="tm-badge">Agribank</span></td></tr>
+                        <tr><td class="col-stt">9</td><td class="col-content">Ngân hàng TMCP Hàng hải (Maritimebank)</td><td class="col-tm"><span class="tm-badge">Maritimebank</span></td></tr>
+                        <tr><td class="col-stt">10</td><td class="col-content">Ngân hàng TMCP Việt Nam Thịnh vượng (Vpbank)</td><td class="col-tm"><span class="tm-badge">VP Bank</span></td></tr>
+                        <tr><td class="col-stt">11</td><td class="col-content">Ngân hàng Phát triển Thành phố Hồ Chí Minh (HDBank)</td><td class="col-tm"><span class="tm-badge">HD Bank</span></td></tr>
+                        <tr><td class="col-stt">12</td><td class="col-content">Ngân hàng TMCP Phương đông (OCB)</td><td class="col-tm"><span class="tm-badge">OCB</span></td></tr>
+                        <tr><td class="col-stt">13</td><td class="col-content">Ngân hàng TNHH một thành viên ANZ (Việt Nam)</td><td class="col-tm"><span class="tm-badge">ANZ</span></td></tr>
+                        <tr><td class="col-stt">14</td><td class="col-content">Ngân hàng TMCP An bình (Abbank)</td><td class="col-tm"><span class="tm-badge">ABBank</span></td></tr>
+                        <tr><td class="col-stt">15</td><td class="col-content">Ngân hàng TMCP Lộc Phát Việt Nam (Ngân hàng Lộc Phát Việt Nam)</td><td class="col-tm"><span class="tm-badge">LPBank</span></td></tr>
+                        <tr><td class="col-stt">16</td><td class="col-content">Ngân hàng TMCP Thịnh vượng và Phát triển</td><td class="col-tm"><span class="tm-badge">PGBank</span></td></tr>
+                        <tr><td class="col-stt">17</td><td class="col-content">MUFG Bank, Ltd.- Chi nhánh Thành phố Hồ Chí Minh, MUFG Bank, Ltd.- Chi nhánh Thành phố Hà Nội</td><td class="col-tm"><span class="tm-badge">BTMU</span></td></tr>
+                        <tr><td class="col-stt">18</td><td class="col-content">Ngân hàng TMCP Đông Á (DongA Bank)</td><td class="col-tm"><span class="tm-badge">DongA bank</span></td></tr>
+                        <tr><td class="col-stt">19</td><td class="col-content">Ngân hàng TMCP Sài gòn (SCB)</td><td class="col-tm"><span class="tm-badge">SCB</span></td></tr>
+                        <tr><td class="col-stt">20</td><td class="col-content">Ngân hàng TMCP Sài gòn Thương tín (Sacombank)</td><td class="col-tm"><span class="tm-badge">Sacombank</span></td></tr>
+                        <tr><td class="col-stt">21</td><td class="col-content">Ngân hàng TMCP Á Châu (ACB)</td><td class="col-tm"><span class="tm-badge">ACB</span></td></tr>
+                        <tr><td class="col-stt">22</td><td class="col-content">Ngân hàng TMCP Tiên Phong (TPBank)</td><td class="col-tm"><span class="tm-badge">TP Bank</span></td></tr>
+                        <tr><td class="col-stt">23</td><td class="col-content">Ngân hàng TMCP Sài Gòn – Hà Nội (SHB)</td><td class="col-tm"><span class="tm-badge">SHB</span></td></tr>
+                        <tr><td class="col-stt">24</td><td class="col-content">Ngân hàng TMCP Đông Nam Á (SeABank)</td><td class="col-tm"><span class="tm-badge">SeA Bank</span></td></tr>
+                        <tr><td class="col-stt">25</td><td class="col-content">Ngân hàng TMCP Bản Việt (VCCB)</td><td class="col-tm"><span class="tm-badge">VCCB</span></td></tr>
+                        <tr><td class="col-stt">26</td><td class="col-content">Ngân hàng Mizuho Bank, Ltd</td><td class="col-tm"><span class="tm-badge">Mizuho</span></td></tr>
+                        <tr><td class="col-stt">27</td><td class="col-content">Ngân hàng Sumitomo Mitsui Banking Corporation (SMBC)</td><td class="col-tm"><span class="tm-badge">SMBC</span></td></tr>
+                        <tr><td class="col-stt">28</td><td class="col-content">Ngân hàng trách nhiệm hữu hạn INDOVINA</td><td class="col-tm"><span class="tm-badge">INDOVINA</span></td></tr>
+                        <tr><td class="col-stt">29</td><td class="col-content">Ngân hàng TNHH một thành viên Shinhan Việt Nam</td><td class="col-tm"><span class="tm-badge">Shinhan Bank</span></td></tr>
+                        <tr><td class="col-stt">30</td><td class="col-content">Ngân hàng thương mại cổ phần Việt Á</td><td class="col-tm"><span class="tm-badge">VietABank</span></td></tr>
+                        <tr><td class="col-stt">31</td><td class="col-content">Ngân hàng CITIBANK, N.A.</td><td class="col-tm"><span class="tm-badge">Citi bank</span></td></tr>
+                        <tr><td class="col-stt">32</td><td class="col-content">Ngân hàng thương mại cổ phần Kiên Long (KienLongBank)</td><td class="col-tm"><span class="tm-badge">KienLongBank</span></td></tr>
+                        <tr><td class="col-stt">33</td><td class="col-content">Ngân hàng TNHH một thành viên HSBC Việt Nam</td><td class="col-tm"><span class="tm-badge">HSBC</span></td></tr>
+                        <tr><td class="col-stt">34</td><td class="col-content">Ngân hàng Bangkok Đại chúng trách nhiệm hữu hạn</td><td class="col-tm"><span class="tm-badge">-</span></td></tr>
+                        <tr><td class="col-stt">35</td><td class="col-content">Ngân hàng TNHH MTV Woori Việt Nam (Woori Bank)</td><td class="col-tm"><span class="tm-badge">Woori Bank</span></td></tr>
+                        <tr><td class="col-stt">36</td><td class="col-content">Ngân hàng thương mại cổ phần Việt Nam Thương Tín</td><td class="col-tm"><span class="tm-badge">VietBank</span></td></tr>
+                        <tr><td class="col-stt">37</td><td class="col-content">Ngân hàng TNHH một thành viên Standard Chartered (Việt Nam)</td><td class="col-tm"><span class="tm-badge">SCBVL</span></td></tr>
+                        <tr><td class="col-stt">38</td><td class="col-content">Ngân hàng TMCP Quốc Dân</td><td class="col-tm"><span class="tm-badge">NCB</span></td></tr>
+                        <tr><td class="col-stt">39</td><td class="col-content">Ngân hàng JP Morgan Chase, N.A – CN HCM</td><td class="col-tm"><span class="tm-badge">Morgan CN HCM</span></td></tr>
+                        <tr><td class="col-stt">40</td><td class="col-content">Ngân hàng thương mại cổ phần Nam Á</td><td class="col-tm"><span class="tm-badge">NamAbank</span></td></tr>
+                        <tr><td class="col-stt">41</td><td class="col-content">Ngân hàng The Siam Commercial Bank Public Company Limited - CN HCM</td><td class="col-tm"><span class="tm-badge">Siam bank</span></td></tr>
+                        <tr><td class="col-stt">42</td><td class="col-content">Ngân hàng Indusstrial Bank of Korea -CN HCM</td><td class="col-tm"><span class="tm-badge">IBK -CN HCM</span></td></tr>
+                        <tr><td class="col-stt">43</td><td class="col-content">Ngân hàng BNP Paribas CN HCM</td><td class="col-tm"><span class="tm-badge">-</span></td></tr>
+                        <tr><td class="col-stt">44</td><td class="col-content">Ngân hàng Deutsbank HCM</td><td class="col-tm"><span class="tm-badge">DBHCM</span></td></tr>
+                        <tr><td class="col-stt">45</td><td class="col-content">Ngân hàng Bank of China (Hong Kong) Limited – CN HCM</td><td class="col-tm"><span class="tm-badge">BOC HCM</span></td></tr>
+                        <tr><td class="col-stt">46</td><td class="col-content">Ngân hàng TNHH CTBC – CN HCM</td><td class="col-tm"><span class="tm-badge">-</span></td></tr>
+                        <tr><td class="col-stt">47</td><td class="col-content">Ngân hàng KEB HANA chi nhánh Hà Nội / Chi nhánh Hồ Chí Minh</td><td class="col-tm"><span class="tm-badge">-</span></td></tr>
+                        <tr><td class="col-stt">48</td><td class="col-content">Ngân hàng Cathay United Bank Chi nhánh TP Hồ Chí Minh</td><td class="col-tm"><span class="tm-badge">-</span></td></tr>
                     </tbody>
                 </table>
             </div>
@@ -490,7 +528,6 @@
     document.getElementById('search-tieumuc-input').addEventListener('input', function(e) {
         const kw = removeAccents(e.target.value).trim();
         
-        // 5.1 Lọc dữ liệu trong file JSON (nếu có)
         if (!kw) { 
             renderTieuMuc(globalTieuMuc); 
         } else {
@@ -501,22 +538,17 @@
             renderTieuMuc(filtered);
         }
 
-        // 5.2 Lọc dữ liệu trực tiếp trong BẢNG CỐ ĐỊNH HTML
         const tableRows = document.querySelectorAll('#table-tieumuc tbody tr');
-        let hasVisibleRow = false;
-        
         tableRows.forEach(row => {
             const text = removeAccents(row.innerText);
             if (text.includes(kw)) {
                 row.style.display = '';
-                hasVisibleRow = true;
             } else {
                 row.style.display = 'none';
             }
         });
     });
 
-    // Thử load file tieumuc.json nếu có tải lên
     fetch(API_TIEUMUC)
         .then(res => res.json())
         .then(data => {
@@ -524,7 +556,6 @@
             document.getElementById('loading-tieumuc').style.display = 'none'; 
             renderTieuMuc(globalTieuMuc);
         }).catch(err => {
-            // Im lặng nếu không có file, chỉ dùng bảng HTML
             document.getElementById('loading-tieumuc').style.display = 'none'; 
         });
 
