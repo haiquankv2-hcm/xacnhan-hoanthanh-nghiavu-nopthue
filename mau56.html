@@ -70,6 +70,11 @@
             p { margin: 6px 0; }
             .bold { font-weight: bold; }
             .uppercase { text-transform: uppercase; }
+
+            /* Căn lề thụt vào cho phần nội dung (canh thẳng với chữ Số CV) */
+            .indent-content {
+                padding-left: 15%; /* Có thể chỉnh % này để lùi ra/vào cho khớp với chữ "Số CV" */
+            }
         }
     </style>
 </head>
@@ -102,10 +107,10 @@
         <!-- Hàng 1: Tên Công ty & Quốc hiệu -->
         <tr>
             <td style="width: 45%; text-align: center; vertical-align: top; padding-bottom: 2px;">
-                <p class="uppercase bold" style="margin: 0; font-size: 13pt;" id="p_tenCongTy_header"></p>
+                <!-- Đã thêm word-wrap để chữ dài tự xuống dòng -->
+                <p class="uppercase bold" style="margin: 0; font-size: 13pt; word-wrap: break-word; white-space: normal; line-height: 1.2;" id="p_tenCongTy_header"></p>
             </td>
             <td style="width: 55%; text-align: center; vertical-align: top; padding-bottom: 2px;">
-                <!-- Giảm cỡ chữ 12pt, ép nằm trên 1 hàng (nowrap) -->
                 <p class="bold" style="margin: 0; font-size: 12pt; white-space: nowrap;">CỘNG HÒA XÃ HỘI CHỦ NGHĨA VIỆT NAM</p>
                 <p class="bold" style="margin: 0; font-size: 14pt;">Độc lập - Tự do - Hạnh phúc</p>
             </td>
@@ -134,23 +139,24 @@
     
     <!-- NỘI DUNG CHÍNH -->
     <div style="text-align: justify;">
-        <!-- margin-bottom tăng lên 35px để tạo khoảng cách bằng 1 dòng trắng -->
         <p style="text-align: center; margin-bottom: 35px;"><span class="bold">Kính gửi:</span> Chi cục Hải quan khu vực II</p>
         
-        <p>Căn cứ Khoản … Điều … Thông tư số 86/2026/TT-BTC ngày 30/06/2026 của Bộ Trưởng Bộ Tài chính quy định về quản lý thuế đối với hàng hóa xuất khẩu, nhập khẩu.</p>
-        
-        <p>Tên Công ty/tên cơ quan nhà nước có thẩm quyền: <span class="bold uppercase" id="p_tenCongTy"></span></p>
-        
-        <p>Địa chỉ (đối với Công ty là địa chỉ ghi trên giấy chứng nhận đăng ký doanh nghiệp): <span id="p_diaChiDKDN"></span></p>
-        
-        <p>Địa chỉ liên hệ: <span id="p_diaChiLienHe"></span></p>
-        
-        <!-- Mã số thuế đã được in đậm (class="bold") -->
-        <p>Đề nghị Chi cục Hải quan khu vực/đơn vị Hải quan xác nhận hoàn thành nghĩa vụ nộp thuế cho: <span class="bold" id="p_tenDonViXacNhan"></span>, mã số thuế: <span class="bold" id="p_maSoThue"></span></p>
-        
-        <p>Lý do xác nhận hoàn thành nghĩa vụ nộp thuế: <span id="p_lyDo"></span></p>
-        
-        <p>(Ghi rõ để giải thể, đóng mã số thuế, mục đích khác………)./.</p>
+        <!-- Khối được lùi lề vào trong -->
+        <div class="indent-content">
+            <p>Căn cứ Khoản … Điều … Thông tư số 86/2026/TT-BTC ngày 30/06/2026 của Bộ Trưởng Bộ Tài chính quy định về quản lý thuế đối với hàng hóa xuất khẩu, nhập khẩu.</p>
+            
+            <p>Tên Công ty/tên cơ quan nhà nước có thẩm quyền: <span class="bold uppercase" id="p_tenCongTy"></span></p>
+            
+            <p>Địa chỉ (đối với Công ty là địa chỉ ghi trên giấy chứng nhận đăng ký doanh nghiệp): <span id="p_diaChiDKDN"></span></p>
+            
+            <p>Địa chỉ liên hệ: <span id="p_diaChiLienHe"></span></p>
+            
+            <p>Đề nghị Chi cục Hải quan khu vực/đơn vị Hải quan xác nhận hoàn thành nghĩa vụ nộp thuế cho: <span class="bold" id="p_tenDonViXacNhan"></span>, mã số thuế: <span class="bold" id="p_maSoThue"></span></p>
+            
+            <p>Lý do xác nhận hoàn thành nghĩa vụ nộp thuế: <span id="p_lyDo"></span></p>
+            
+            <p>(Ghi rõ để giải thể, đóng mã số thuế, mục đích khác………)./.</p>
+        </div>
     </div>
     
     <!-- PHẦN CHỮ KÝ VÀ NƠI NHẬN -->
