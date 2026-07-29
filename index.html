@@ -78,6 +78,10 @@
         .col-content { font-weight: 500; }
         .col-tm { text-align: center; width: 80px; }
         
+        /* Hiệu ứng click cho bảng Ngân hàng */
+        #table-nganhang tbody tr { cursor: pointer; transition: background-color 0.2s; }
+        #table-nganhang tbody tr:hover { background-color: #bbdefb; }
+
         /* Căn lùi đầu dòng cho các tiểu mục con */
         .sub-row td.col-content { padding-left: 28px; font-weight: normal; color: #555; position: relative; font-size: 13px;}
         .sub-row td.col-content::before { content: "↳"; position: absolute; left: 10px; color: #999; font-weight: bold;}
@@ -138,8 +142,39 @@
             📝 Điền mẫu 56 tại Thông tư 86/TT-BTC ngày 30/6/2026 của Bộ trưởng Bộ Tài chính
         </a>
 
-        <!-- 3. DROPDOWN NSNN -->
-        <button class="menu-btn accordion-toggle" onclick="toggleSection('sec-nsnn', this)">
+        <!-- 3. MỤC MỚI: LƯU Ý THÔNG TIN CẦN NỘP THUẾ -->
+        <button class="menu-btn accordion-toggle" onclick="toggleSection('sec-luuy', this)">
+            💡 Lưu ý thông tin cần khi nộp thuế, phí <span>▼</span>
+        </button>
+        <div id="sec-luuy" class="dropdown-content">
+            <div style="background: #e3f2fd; padding: 20px; border-radius: 12px; border: 1px solid #90caf9; box-shadow: 0 4px 15px rgba(0,0,0,0.05); color: #0d47a1; line-height: 1.6;">
+                <h3 style="margin-top: 0; color: #1565c0; font-size: 18px; border-bottom: 2px solid #90caf9; padding-bottom: 10px;">Khi nộp thuế, phí, Doanh nghiệp cần lưu ý điền đầy đủ và chính xác các thông tin sau:</h3>
+                
+                <ul style="padding-left: 20px; margin-bottom: 0; list-style-type: square;">
+                    <li style="margin-bottom: 15px;">
+                        <strong style="color: #d32f2f;">Số tờ khai:</strong> Lấy trên tờ khai hải quan của doanh nghiệp.
+                    </li>
+                    <li style="margin-bottom: 15px;">
+                        <strong style="color: #d32f2f;">Tài khoản thu, Tên cơ quan thu ngân sách, Tên kho bạc nhà nước, Mã cơ quan thu ngân sách:</strong>
+                        <br>
+                        👉 <a href="javascript:void(0);" onclick="openTargetSection('btn-nsnn', 'sec-nsnn')" style="color: #1976d2; font-weight: bold; text-decoration: underline; background: #fff; padding: 2px 8px; border-radius: 4px; border: 1px solid #90caf9; display: inline-block; margin-top: 5px;">Tra cứu tại mục "Thông tin thu NSNN"</a>
+                    </li>
+                    <li style="margin-bottom: 15px;">
+                        <strong style="color: #d32f2f;">Mã chương:</strong>
+                        <br>
+                        👉 <a href="javascript:void(0);" onclick="openTargetSection('btn-chuong', 'sec-chuong')" style="color: #1976d2; font-weight: bold; text-decoration: underline; background: #fff; padding: 2px 8px; border-radius: 4px; border: 1px solid #90caf9; display: inline-block; margin-top: 5px;">Tra cứu tại mục "Tra cứu Chương"</a>
+                    </li>
+                    <li style="margin-bottom: 5px;">
+                        <strong style="color: #d32f2f;">Mã Tiểu mục:</strong>
+                        <br>
+                        👉 <a href="javascript:void(0);" onclick="openTargetSection('btn-tieumuc', 'sec-tieumuc')" style="color: #1976d2; font-weight: bold; text-decoration: underline; background: #fff; padding: 2px 8px; border-radius: 4px; border: 1px solid #90caf9; display: inline-block; margin-top: 5px;">Tra cứu tại mục "Tra cứu Tiểu mục"</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- 4. DROPDOWN NSNN -->
+        <button id="btn-nsnn" class="menu-btn accordion-toggle" onclick="toggleSection('sec-nsnn', this)">
             🏦 Thông tin thu NSNN <span>▼</span>
         </button>
         <div id="sec-nsnn" class="dropdown-content">
@@ -159,8 +194,8 @@
             <div id="nsnn-grid" class="grid-container" style="display: none;"></div>
         </div>
 
-        <!-- 4. DROPDOWN CHƯƠNG -->
-        <button class="menu-btn accordion-toggle" onclick="toggleSection('sec-chuong', this)">
+        <!-- 5. DROPDOWN CHƯƠNG -->
+        <button id="btn-chuong" class="menu-btn accordion-toggle" onclick="toggleSection('sec-chuong', this)">
             📖 Tra cứu Chương <span>▼</span>
         </button>
         <div id="sec-chuong" class="dropdown-content">
@@ -195,8 +230,8 @@
             </div>
         </div>
 
-        <!-- 5. DROPDOWN TIỂU MỤC -->
-        <button class="menu-btn accordion-toggle" onclick="toggleSection('sec-tieumuc', this)">
+        <!-- 6. DROPDOWN TIỂU MỤC -->
+        <button id="btn-tieumuc" class="menu-btn accordion-toggle" onclick="toggleSection('sec-tieumuc', this)">
             📑 Tra cứu Tiểu mục <span>▼</span>
         </button>
         <div id="sec-tieumuc" class="dropdown-content">
@@ -265,8 +300,8 @@
             <div id="tieumuc-grid" class="grid-container" style="display: none;"></div>
         </div>
 
-        <!-- 6. MỤC MỚI: DROPDOWN NGÂN HÀNG PHỐI HỢP THU -->
-        <button class="menu-btn accordion-toggle" onclick="toggleSection('sec-nganhang', this)">
+        <!-- 7. MỤC MỚI: DROPDOWN NGÂN HÀNG PHỐI HỢP THU -->
+        <button id="btn-nganhang" class="menu-btn accordion-toggle" onclick="toggleSection('sec-nganhang', this)">
             💳 Ngân hàng phối hợp thu <span>▼</span>
         </button>
         <div id="sec-nganhang" class="dropdown-content">
@@ -274,6 +309,11 @@
             <div style="background: #e3f2fd; padding: 15px; border-radius: 8px; border-left: 5px solid #1976d2; margin-bottom: 15px; font-size: 14px; line-height: 1.5; color: #0d47a1; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 <strong>📌 Căn cứ:</strong><br>
                 <a href="http://customs.gov.vn:8228/index.jsp?pageId=4&cid=1200" target="_blank" style="color: #d32f2f; font-weight: bold; text-decoration: none;">Danh sách các Ngân hàng phối hợp thu với Tổng cục Hải quan</a>
+            </div>
+
+            <!-- Dòng thông báo Mẹo Click bản đồ -->
+            <div style="background: #e8eaf6; padding: 10px 15px; border-radius: 8px; margin-bottom: 15px; font-size: 14px; text-align: center; color: #1565c0; font-weight: bold; border: 1px dashed #90caf9;">
+                💡 Mẹo: Nhấp vào bất kỳ Ngân hàng nào trong bảng để tìm chi nhánh gần nhất trên bản đồ 📍
             </div>
 
             <div class="search-bar">
@@ -341,10 +381,6 @@
                     </tbody>
                 </table>
             </div>
-            
-            <div style="font-size: 13px; color: #555; text-align: center; margin-top: 10px;">
-                <em>* Bấm vào link căn cứ phía trên để xem danh sách đầy đủ mới nhất.</em>
-            </div>
 
         </div>
 
@@ -398,6 +434,24 @@
             targetContent.classList.add('show');
             btnElement.classList.add('active');
         }
+    }
+
+    // =====================================
+    // HÀM MỞ TAB ĐÍCH TỪ LINK (SMOOTH SCROLL)
+    // =====================================
+    function openTargetSection(btnId, sectionId) {
+        const targetBtn = document.getElementById(btnId);
+        const targetSec = document.getElementById(sectionId);
+        
+        // Mở accordion
+        if (!targetSec.classList.contains('show')) {
+            targetBtn.click();
+        }
+        
+        // Cuộn màn hình đến vị trí tab đó mượt mà
+        setTimeout(() => {
+            targetBtn.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 150);
     }
 
     // =====================================
@@ -497,7 +551,7 @@
         });
 
     // =====================================
-    // 5. XỬ LÝ TÌM KIẾM CHO TIỂU MỤC (BẢNG HTML & JSON)
+    // 5. XỬ LÝ TÌM KIẾM CHO TIỂU MỤC
     // =====================================
     const API_TIEUMUC = "tieumuc.json"; 
     let globalTieuMuc = [];
@@ -560,8 +614,31 @@
         });
 
     // =====================================
-    // 6. XỬ LÝ TÌM KIẾM NGÂN HÀNG PHỐI HỢP THU
+    // 6. XỬ LÝ CLICK TÌM GOOGLE MAPS CHO BẢNG NGÂN HÀNG
     // =====================================
+    document.addEventListener("DOMContentLoaded", function() {
+        const bankRows = document.querySelectorAll('#table-nganhang tbody tr');
+        
+        bankRows.forEach(row => {
+            // Lấy cột Tên Ngân Hàng (cột thứ 2)
+            const tdName = row.cells[1]; 
+            
+            // Lấy tên ngân hàng để làm từ khóa tìm kiếm (Ví dụ: Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV))
+            const queryText = tdName.textContent.trim();
+            const mapUrl = `https://www.google.com/maps/search/?api=1&query=Ngân+hàng+${encodeURIComponent(queryText)}`;
+            
+            // Gắn thêm icon bản đồ vào tên ngân hàng
+            tdName.innerHTML += ' <span style="font-size: 14px; margin-left: 5px; opacity: 0.8;" title="Tìm trên Google Maps">📍</span>';
+            
+            // Gắn sự kiện click cho cả dòng
+            row.title = 'Nhấn để tìm chi nhánh gần nhất trên Google Maps';
+            row.addEventListener('click', function() {
+                window.open(mapUrl, '_blank');
+            });
+        });
+    });
+
+    // Hàm xử lý ô tìm kiếm ngân hàng
     document.getElementById('search-nganhang-input').addEventListener('input', function(e) {
         const kw = removeAccents(e.target.value).trim();
         const tableRows = document.querySelectorAll('#table-nganhang tbody tr');
