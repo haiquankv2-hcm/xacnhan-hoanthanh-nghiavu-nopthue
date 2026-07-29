@@ -42,6 +42,13 @@
         .dropdown-content.show { display: block; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
 
+        /* HIỆU ỨNG NHẤP NHÁY VIỀN CHO KHUNG HỖ TRỢ */
+        @keyframes pulseBorder {
+            0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
+        }
+
         /* THANH TÌM KIẾM */
         .search-bar { background: rgba(255, 255, 255, 0.95); color: #444; padding: 16px 20px; border-radius: 12px; border: 2px solid #1976d2; display: flex; align-items: center; box-shadow: 0 4px 15px rgba(0,0,0,0.08); max-width: 100%; margin: 0 auto 15px auto; }
         .search-bar input { border: none; outline: none; flex-grow: 1; font-size: 15px; width: 100%; background: transparent; font-family: 'Roboto', Arial, sans-serif; }
@@ -137,10 +144,26 @@
             🔍 Tra cứu nợ thuế Hải quan
         </a>
         
-        <!-- 2. CHUYỂN HƯỚNG TRỰC TIẾP -->
-        <a href="mau56.html" class="menu-btn link-btn-outline">
-            📝 Điền mẫu 56 tại Thông tư 86/TT-BTC ngày 30/6/2026 của Bộ trưởng Bộ Tài chính
+        <!-- 2. NÚT ĐIỀN MẪU 56 (Đã căn giữa) -->
+        <a href="mau56.html" class="menu-btn link-btn-outline" style="line-height: 1.4;">
+            <span style="text-align: center;">📝 Điền mẫu 56 tại Thông tư 86/TT-BTC ngày 30/6/2026 của Bộ trưởng Bộ Tài chính</span>
         </a>
+
+        <!-- Ô THÔNG BÁO VƯỚNG MẮC LIÊN HỆ (Được làm nổi bật để thu hút chú ý) -->
+        <div style="background: linear-gradient(135deg, #ffebee, #ffcdd2); padding: 20px; border-radius: 12px; border-left: 6px solid #d32f2f; margin-bottom: 10px; box-shadow: 0 4px 15px rgba(211, 47, 47, 0.15); animation: pulseBorder 2s infinite;">
+            <h3 style="margin: 0 0 10px 0; color: #b71c1c; font-size: 16px; display: flex; align-items: center; gap: 8px;">
+                <span>☎️</span> HỖ TRỢ & GIẢI ĐÁP VƯỚNG MẮC
+            </h3>
+            <p style="margin: 0 0 10px 0; font-size: 14px; color: #333; line-height: 1.5; font-weight: 500;">
+                Mọi vướng mắc xin vui lòng liên hệ:<br>
+                <strong style="color: #d32f2f; font-size: 15px;">Phòng Nghiệp vụ hải quan - Chi cục Hải quan khu vực II</strong><br>
+                📍 Số 02 Hàm Nghi, Phường Sài Gòn, TP.HCM
+            </p>
+            <p style="margin: 0; font-size: 14px; color: #333; font-weight: 500;">
+                ✉️ Mọi vướng mắc xin gửi về email: <br>
+                👉 <a href="mailto:thanhnien.phongnvhq@gmail.com" style="color: #1976d2; font-weight: bold; text-decoration: underline; background: #fff; padding: 2px 6px; border-radius: 4px; display: inline-block; margin-top: 4px;">thanhnien.phongnvhq@gmail.com</a>
+            </p>
+        </div>
 
         <!-- 3. MỤC MỚI: LƯU Ý THÔNG TIN CẦN NỘP THUẾ -->
         <button class="menu-btn accordion-toggle" onclick="toggleSection('sec-luuy', this)">
@@ -179,7 +202,6 @@
         </button>
         <div id="sec-nsnn" class="dropdown-content">
             
-            <!-- KHUNG THÔNG BÁO CĂN CỨ NSNN -->
             <div style="background: #fff3e0; padding: 15px; border-radius: 8px; border-left: 5px solid #ff9800; margin-bottom: 20px; font-size: 14px; line-height: 1.5; color: #e65100; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 <strong>📌 Căn cứ:</strong><br>
                 Thông báo số 12377/TB-CHQ ngày 03/07/2025 và Thông báo số 11801/TB-CHQ ngày 30/06/2025 về thông báo thông tin tài khoản thu NSNN của Cục trưởng Cục hải quan.
@@ -236,18 +258,15 @@
         </button>
         <div id="sec-tieumuc" class="dropdown-content">
             
-            <!-- KHUNG THÔNG BÁO CĂN CỨ PHÁP LÝ -->
             <div style="background: #e8f5e9; padding: 15px; border-radius: 8px; border-left: 5px solid #4caf50; margin-bottom: 15px; font-size: 14px; line-height: 1.5; color: #2e7d32; box-shadow: 0 4px 10px rgba(0,0,0,0.05);">
                 <strong>📌 Căn cứ pháp lý:</strong><br>
                 Thông tư Số 130/2025/TT-BTC về QUY ĐỊNH HỆ THỐNG MỤC LỤC NGÂN SÁCH NHÀ NƯỚC ngày 24/12/2025 của Bộ trưởng Bộ Tài chính.
             </div>
 
-            <!-- Ô TÌM KIẾM ĐƯỢC CHUYỂN LÊN ĐÂY -->
             <div class="search-bar">
                 <input type="text" id="search-tieumuc-input" placeholder="🔍 Nhập Tên hoặc Mã tiểu mục cần tìm...">
             </div>
 
-            <!-- BẢNG DANH SÁCH TIỂU MỤC -->
             <div class="table-wrapper">
                 <table class="customs-table" id="table-tieumuc">
                     <thead>
@@ -295,12 +314,11 @@
                 </table>
             </div>
 
-            <!-- NƠI HIỂN THỊ DỮ LIỆU TỪ TIEUMUC.JSON (Nếu có) -->
             <div id="loading-tieumuc" class="loading" style="display: none;">⏳ Đang tải dữ liệu bổ sung...</div>
             <div id="tieumuc-grid" class="grid-container" style="display: none;"></div>
         </div>
 
-        <!-- 7. MỤC MỚI: DROPDOWN NGÂN HÀNG PHỐI HỢP THU -->
+        <!-- 7. MỤC: DROPDOWN NGÂN HÀNG PHỐI HỢP THU -->
         <button id="btn-nganhang" class="menu-btn accordion-toggle" onclick="toggleSection('sec-nganhang', this)">
             💳 Ngân hàng phối hợp thu <span>▼</span>
         </button>
@@ -311,7 +329,6 @@
                 <a href="http://customs.gov.vn:8228/index.jsp?pageId=4&cid=1200" target="_blank" style="color: #d32f2f; font-weight: bold; text-decoration: none;">Danh sách các Ngân hàng phối hợp thu với Tổng cục Hải quan</a>
             </div>
 
-            <!-- Dòng thông báo Mẹo Click bản đồ -->
             <div style="background: #e8eaf6; padding: 10px 15px; border-radius: 8px; margin-bottom: 15px; font-size: 14px; text-align: center; color: #1565c0; font-weight: bold; border: 1px dashed #90caf9;">
                 💡 Mẹo: Nhấp vào bất kỳ Ngân hàng nào trong bảng để tìm chi nhánh gần nhất trên bản đồ 📍
             </div>
@@ -391,7 +408,10 @@
         <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
             <div style="display: flex; align-items: center; justify-content: flex-start; gap: 15px;">
                 <img src="Logo-doan.png" alt="Logo Đoàn" class="footer-logo" onerror="this.style.display='none'">
-                <p style="margin: 0; font-weight: bold; color: #1976d2; text-align: left; font-size: 13px;">Một sản phẩm của Đoàn thanh niên<br>Chi cục Hải quan khu vực II</p>
+                <p style="margin: 0; font-weight: bold; color: #1976d2; text-align: left; font-size: 13px;">
+                    Một sản phẩm của Chi đoàn Phòng Nghiệp vụ hải quan<br>
+                    Đoàn Thanh niên Chi cục Hải quan khu vực II
+                </p>
             </div>
             
             <div style="display: flex; align-items: center; gap: 8px; background: rgba(255,255,255,0.5); padding: 5px 10px; border-radius: 8px; border: 1px solid rgba(25, 118, 210, 0.2);">
@@ -620,17 +640,12 @@
         const bankRows = document.querySelectorAll('#table-nganhang tbody tr');
         
         bankRows.forEach(row => {
-            // Lấy cột Tên Ngân Hàng (cột thứ 2)
             const tdName = row.cells[1]; 
-            
-            // Lấy tên ngân hàng để làm từ khóa tìm kiếm (Ví dụ: Ngân hàng TMCP Đầu tư và Phát triển Việt Nam (BIDV))
             const queryText = tdName.textContent.trim();
             const mapUrl = `https://www.google.com/maps/search/?api=1&query=Ngân+hàng+${encodeURIComponent(queryText)}`;
             
-            // Gắn thêm icon bản đồ vào tên ngân hàng
             tdName.innerHTML += ' <span style="font-size: 14px; margin-left: 5px; opacity: 0.8;" title="Tìm trên Google Maps">📍</span>';
             
-            // Gắn sự kiện click cho cả dòng
             row.title = 'Nhấn để tìm chi nhánh gần nhất trên Google Maps';
             row.addEventListener('click', function() {
                 window.open(mapUrl, '_blank');
@@ -638,7 +653,6 @@
         });
     });
 
-    // Hàm xử lý ô tìm kiếm ngân hàng
     document.getElementById('search-nganhang-input').addEventListener('input', function(e) {
         const kw = removeAccents(e.target.value).trim();
         const tableRows = document.querySelectorAll('#table-nganhang tbody tr');
