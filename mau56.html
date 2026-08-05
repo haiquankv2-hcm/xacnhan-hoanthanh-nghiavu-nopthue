@@ -14,6 +14,30 @@
             background-attachment: fixed; 
             margin: 0; padding: 20px; color: #333; 
         }
+        
+        /* CẢNH BÁO TRÌNH DUYỆT ZALO */
+        #zalo-warning {
+            display: none; /* Mặc định ẩn, chỉ hiện khi dùng Zalo */
+            background-color: #d32f2f;
+            color: #ffffff;
+            padding: 15px 20px;
+            text-align: center;
+            font-family: 'Roboto', Arial, sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 12px;
+            margin: 0 auto 20px auto;
+            max-width: 800px;
+            box-shadow: 0 4px 15px rgba(211, 47, 47, 0.4);
+            line-height: 1.5;
+            animation: pulseWarning 2s infinite;
+        }
+        @keyframes pulseWarning {
+            0% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(211, 47, 47, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(211, 47, 47, 0); }
+        }
+
         .container { 
             max-width: 800px; margin: 0 auto; 
             background: rgba(255, 255, 255, 0.7); 
@@ -47,7 +71,7 @@
         }
         .btn-word:hover { background: #115293; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);}
 
-        .back-link { display: block; text-align: center; margin-top: 20px; color: #1976d2; text-decoration: none; font-weight: bold; }
+        .back-link { display: block; text-align: center; margin-top: 20px; color: #1976d2; text-decoration: none; font-weight: bold; font-family: 'Roboto', Arial, sans-serif; }
         .back-link:hover { text-decoration: underline; }
 
         /* Ẩn khu vực in trên màn hình máy tính */
@@ -63,7 +87,7 @@
             } 
             
             body, html { background: white !important; margin: 0; padding: 0; }
-            .container { display: none !important; }
+            .container, #zalo-warning { display: none !important; } /* Ẩn cảnh báo khi in */
             
             #print-area { 
                 display: block; 
@@ -103,6 +127,12 @@
 </head>
 <body>
 
+<!-- CẢNH BÁO MỞ TRÌNH DUYỆT NGOÀI (CHỈ HIỆN TRÊN ZALO) -->
+<div id="zalo-warning">
+    ⚠️ <strong>CHÚ Ý:</strong> Bạn đang mở biểu mẫu bằng ứng dụng Zalo.<br>
+    Chức năng Xuất PDF sẽ bị chặn. Vui lòng bấm vào biểu tượng dấu 3 chấm <strong>(⋮)</strong> ở góc phải màn hình ➡️ chọn <strong>"Mở bằng trình duyệt" (Open in browser)</strong> để tải file.
+</div>
+
 <!-- KHU VỰC 1: FORM ĐIỀN TRÊN WEB -->
 <div class="container">
     <h2>📝 ĐIỀN THÔNG TIN MẪU XÁC NHẬN</h2>
@@ -112,22 +142,22 @@
         <input type="text" id="tenCongTy" placeholder="VD: CÔNG TY TNHH ABC" style="text-transform: uppercase;">
     </div>
    <div class="form-group"><label>2. Số Công văn:</label><input type="text" id="soCongVan" placeholder="VD: 01/CV; 01/CV-XNNT;...." style="text-transform: uppercase;"></div>
-    <div class="form-group"><label>3. Địa chỉ kinh doanh (ghi trên Giấy chứng nhận ĐKDN):</label><input type="text" id="diaChiDKDN"></div>
+    <div class="form-group"><label>3. Địa chỉ (ghi trên Giấy chứng nhận ĐKDN):</label><input type="text" id="diaChiDKDN"></div>
      <div class="form-group"><label>4. Địa chỉ liên hệ:</label><input type="text" id="diaChiLienHe" placeholder="Ghi rõ địa chỉ sau sát nhập"></div>
      <div class="form-group"><label>5. Số điện thoại liên hệ:</label><input type="tel" id="sdtLienHe" placeholder="VD: 0903222333" oninput="formatPhoneNumber(this)"></div>
-    <div class="form-group"><label>6. Tên Đơn vị muốn xác nhận (Công ty/Chi nhánh/HKD/Văn Phòng):</label><input type="text" id="tenDonViXacNhan"></div>
+    <div class="form-group"><label>6. Tên Đơn vị muốn xác nhận (Công ty/Chi nhánh/HKD):</label><input type="text" id="tenDonViXacNhan"></div>
     <div class="form-group"><label>7. Mã số thuế:</label><input type="text" id="maSoThue"></div>
     <div class="form-group"><label>8. Lý do xác nhận:</label><input type="text" id="lyDo" placeholder="Ghi rõ để giải thể, đóng mã số thuế, mục đích khác..."></div>
     <div class="form-group"><label>9. Người đại diện theo pháp luật (Ký tên):</label><input type="text" id="nguoiDaiDien"></div>
 
     <!-- KHUNG GHI CHÚ HIỂN THỊ TRÊN WEB -->
-    <div style="background: #fff9c4; padding: 15px; border-radius: 8px; border-left: 5px solid #fbc02d; margin-top: 20px; font-size: 14px; line-height: 1.5; color: #333;">
+    <div style="background: #fff9c4; padding: 15px; border-radius: 8px; border-left: 5px solid #fbc02d; margin-top: 20px; font-size: 14px; line-height: 1.5; color: #333; font-family: 'Roboto', Arial, sans-serif;">
         <p style="margin: 0 0 5px 0;"><span style="font-weight: bold; font-style: italic;">Ghi chú:</span> Hồ sơ Công ty gửi kèm:</p>
         <p style="margin: 5px 0 5px 10px; text-align: justify;">- Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng nhận ưu đãi đầu tư; Giấy chứng nhận đăng ký mã số thuế: bản chụp (có ký tên, đóng dấu của Công ty) hoặc bản sao nếu có;</p>
         <p style="margin: 0 0 0 10px; text-align: justify;">- Trường hợp xác nhận hoàn thành nghĩa vụ nộp thuế đối với Chi nhánh Công ty thì hồ sơ như nêu trên phải bao gồm của Công ty và Chi nhánh Công ty.</p>
     </div>
 
-    <button class="btn-download" onclick="exportPDF()">🖨️ XUẤT FILE PDF/ IN MẪU ĐÃ ĐIỀN</button>
+    <button class="btn-download" onclick="exportPDF()">🖨️ XUẤT FILE PDF / IN MẪU ĐÃ ĐIỀN</button>
     <a href="mau56.docx" download class="btn-word">📄 TẢI MẪU 56 (FILE WORD) ĐỂ TỰ ĐIỀN</a>
     <a href="index.html" class="back-link">🔙 Quay lại trang tra cứu</a>
 </div>
@@ -162,7 +192,8 @@
                 <p style="margin: 5px 0 0 0; font-size: 12pt;">V/v đề nghị xác nhận hoàn thành nghĩa vụ nộp thuế</p>
             </td>
             <td style="width: 55%; text-align: center; vertical-align: top;">
-<p style="margin: 5px 0 0 0; font-size: 14pt; font-style: italic;"><i>TP.HCM,ngày ...tháng....năm....</i></p>            </td>
+                <p style="margin: 5px 0 0 0; font-size: 14pt; font-style: italic;"><i>TP.HCM, ngày ... tháng ... năm ...</i></p>
+            </td>
         </tr>
     </table>
     
@@ -186,7 +217,6 @@
     </div>
     
     <!-- PHẦN CHỮ KÝ VÀ NƠI NHẬN -->
-    <!-- Đã tăng margin-top để đẩy toàn bộ khối chữ ký và ghi chú xuống dưới -->
     <table style="width: 100%; border: none; margin-top: 40px;">
         <tr>
             <td style="width: 50%; vertical-align: top;">
@@ -197,7 +227,6 @@
             <td style="width: 50%; text-align: center; vertical-align: top;">
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt; white-space: nowrap;">NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</p>
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt;">(HOẶC NGƯỜI ĐƯỢC ỦY QUYỀN)</p>
-                <!-- Đã tăng khoảng trống chừa chữ ký lên 140px để đẩy tên người đại diện xuống -->
                 <p class="bold uppercase" style="margin-top: 140px; font-size: 14pt;" id="p_nguoiDaiDien"></p>
             </td>
         </tr>
@@ -213,6 +242,15 @@
 </div>
 
 <script>
+    // TỰ ĐỘNG PHÁT HIỆN TRÌNH DUYỆT ZALO
+    document.addEventListener("DOMContentLoaded", function() {
+        var userAgent = navigator.userAgent || navigator.vendor || window.opera;
+        // Nếu userAgent chứa từ khóa Zalo
+        if (userAgent.indexOf("Zalo") > -1) {
+            document.getElementById("zalo-warning").style.display = "block";
+        }
+    });
+
     function formatPhoneNumber(input) {
         // Loại bỏ tất cả các ký tự không phải là số
         let phoneNumber = input.value.replace(/\D/g, '');
