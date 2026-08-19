@@ -158,8 +158,8 @@
         <input type="tel" id="sdtLienHe" placeholder="VD: 0903.222.333" oninput="formatPhoneNumber(this)">
     </div>
     <div class="form-group">
-        <label>6. Tên người nhận:</label>
-        <input type="text" id="tenNguoiNhan" placeholder="VD: Nguyễn Văn A" oninput="capitalizeWords(this)">
+        <label>6. Tên người nhận thư:</label>
+        <input type="text" id="tenNguoiNhan" placeholder="VD: Nguyễn Văn An" oninput="capitalizeWords(this)">
     </div>
     <div class="form-group">
         <label>7. Tên Đơn vị muốn xác nhận (Công ty/Chi nhánh/HKD):</label>
@@ -235,7 +235,8 @@
         
         <p>Địa chỉ (đối với Công ty là địa chỉ ghi trên giấy chứng nhận đăng ký doanh nghiệp): <span id="p_diaChiDKDN"></span></p>
         
-        <p>Địa chỉ liên hệ: <span id="p_diaChiLienHe"></span> - SĐT: <span id="p_sdtLienHe"></span> - Người nhận: <span id="p_tenNguoiNhan"></span></p>
+        <!-- THAY ĐỔI Ở ĐÂY: DÙNG MỘT ID ĐỂ TỰ ĐỘNG CHUỖI -->
+        <p id="p_thongTinLienHe">Địa chỉ liên hệ: </p>
         
         <p>Đề nghị Chi cục Hải quan khu vực/đơn vị Hải quan xác nhận hoàn thành nghĩa vụ nộp thuế cho: <span class="bold uppercase" id="p_tenDonViXacNhan"></span>, mã số thuế: <span class="bold" id="p_maSoThue"></span></p>
         
@@ -250,7 +251,7 @@
             <td style="width: 50%; vertical-align: top;">
                 <p class="bold" style="margin: 0; font-size: 12pt; font-style: italic;">Nơi nhận:</p>
                 <p style="margin: 0; font-size: 12pt;">- Như trên;</p>
-                <p style="margin: 0; font-size: 12pt;">- Lưu: VT,</p>
+                <p style="margin: 0; font-size: 12pt;">- Lưu: VT,...</p>
             </td>
             <td style="width: 50%; text-align: center; vertical-align: top;">
                 <p class="bold uppercase" style="margin: 0; font-size: 14pt; white-space: nowrap;">NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</p>
@@ -302,15 +303,34 @@
         input.value = phoneNumber;
     }
 
-    // XUẤT FILE PDF
+    // XUẤT FILE PDF VÀ KIỂM TRA TRƯỜNG THÔNG TIN ẨN/HIỆN
     function exportPDF() {
         document.getElementById('p_tenCongTy_header').innerText = document.getElementById('tenCongTy').value;
         document.getElementById('p_tenCongTy').innerText = document.getElementById('tenCongTy').value;
         document.getElementById('p_soCongVan').innerText = document.getElementById('soCongVan').value.toUpperCase();
         document.getElementById('p_diaChiDKDN').innerText = document.getElementById('diaChiDKDN').value;
-        document.getElementById('p_diaChiLienHe').innerText = document.getElementById('diaChiLienHe').value;
-        document.getElementById('p_sdtLienHe').innerText = document.getElementById('sdtLienHe').value;
-        document.getElementById('p_tenNguoiNhan').innerText = document.getElementById('tenNguoiNhan').value;
+        
+        // --- XỬ LÝ DÒNG THÔNG TIN LIÊN HỆ ĐỘNG ---
+        let diaChiVal = document.getElementById('diaChiLienHe').value.trim();
+        let sdtVal = document.getElementById('sdtLienHe').value.trim();
+        let nguoiNhanVal = document.getElementById('tenNguoiNhan').value.trim();
+        
+        let chuoiThongTin = "Địa chỉ liên hệ: " + diaChiVal;
+        
+        // Nếu có nhập số điện thoại thì nối thêm
+        if (sdtVal !== "") {
+            chuoiThongTin += " - SĐT: " + sdtVal;
+        }
+        
+        // Nếu có nhập tên người nhận thì nối thêm
+        if (nguoiNhanVal !== "") {
+            chuoiThongTin += " - Người nhận: " + nguoiNhanVal;
+        }
+        
+        // Xuất ra HTML đoạn hoàn chỉnh
+        document.getElementById('p_thongTinLienHe').innerText = chuoiThongTin;
+        // ------------------------------------------
+
         document.getElementById('p_tenDonViXacNhan').innerText = document.getElementById('tenDonViXacNhan').value.toUpperCase();
         document.getElementById('p_maSoThue').innerText = document.getElementById('maSoThue').value;
         document.getElementById('p_lyDo').innerText = document.getElementById('lyDo').value;
