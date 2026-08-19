@@ -46,8 +46,8 @@
             box-shadow: 0 8px 32px rgba(0,0,0,0.1); 
             border: 1px solid rgba(255,255,255,1);
         }
-        h2 { color: #1976d2; text-align: center; margin-bottom: 20px; }
-        .form-group { margin-bottom: 15px; }
+        h2 { color: #1976d2; text-align: center; margin-bottom: 20px; font-family: 'Roboto', Arial, sans-serif; }
+        .form-group { margin-bottom: 15px; font-family: 'Roboto', Arial, sans-serif; }
         label { display: block; font-weight: bold; margin-bottom: 5px; font-size: 14px; color: #444; }
         input[type="text"], input[type="tel"] { 
             width: 100%; padding: 10px; border: 1px solid #ccc; 
@@ -60,6 +60,7 @@
             display: block; width: 100%; padding: 15px; background: #d32f2f; 
             color: white; border: none; border-radius: 8px; font-size: 16px; 
             font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 25px;
+            font-family: 'Roboto', Arial, sans-serif;
         }
         .btn-download:hover { background: #b71c1c; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(211, 47, 47, 0.3);}
         
@@ -68,50 +69,72 @@
             color: white; border: none; border-radius: 8px; font-size: 16px; 
             font-weight: bold; cursor: pointer; transition: 0.3s; margin-top: 15px;
             text-align: center; text-decoration: none; box-sizing: border-box;
+            font-family: 'Roboto', Arial, sans-serif;
         }
         .btn-word:hover { background: #115293; transform: translateY(-2px); box-shadow: 0 4px 15px rgba(25, 118, 210, 0.3);}
 
         .back-link { display: block; text-align: center; margin-top: 20px; color: #1976d2; text-decoration: none; font-weight: bold; font-family: 'Roboto', Arial, sans-serif; }
         .back-link:hover { text-decoration: underline; }
 
-        /* Ẩn khu vực in trên màn hình máy tính */
+        /* Ẩn khu vực in trên màn hình web */
         #print-area { display: none; }
 
         /* =========================================
            GIAO DIỆN KHI BẤM NÚT IN HOẶC XUẤT PDF
+           (KHÓA CỨNG KÍCH THƯỚC A4 CHO CẢ PC & MOBILE)
            ========================================= */
         @media print {
             @page { 
-                size: A4; 
-                margin: 0; 
+                size: A4 portrait; 
+                margin: 0; /* Bắt buộc để 0 để loại bỏ lề ảo của điện thoại */
             } 
             
-            body, html { background: white !important; margin: 0; padding: 0; }
+            body, html { 
+                background: white !important; 
+                margin: 0 !important; 
+                padding: 0 !important; 
+                width: 100% !important;
+                -webkit-print-color-adjust: exact;
+            }
             .container, #zalo-warning { display: none !important; } 
             
             #print-area { 
-                display: block; 
-                width: 100%;
-                padding: 10mm 20mm 10mm 20mm; 
+                display: block !important; 
+                /* Khóa cứng kích thước trang in thành đúng chuẩn A4 */
+                width: 210mm !important;
+                height: 297mm !important;
+                position: absolute; /* Cố định vị trí từ góc trang */
+                top: 0;
+                left: 0;
+                /* Căn lề chuẩn cho văn bản (Trên, Phải, Dưới, Trái) */
+                padding: 15mm 20mm 15mm 20mm !important; 
                 box-sizing: border-box;
                 font-family: 'Times New Roman', Times, serif; 
                 font-size: 14pt; 
                 line-height: 1.2; 
                 color: black;
+                overflow: hidden; /* Ngăn chặn bất kỳ thành phần nào tràn ra làm rớt trang */
             }
+            
             .bold { font-weight: bold; }
             .uppercase { text-transform: uppercase; }
 
             .content-body p {
                 text-indent: 40px; 
                 text-align: justify; 
-                margin: 4px 0; 
+                margin: 5px 0; 
             }
             
+            /* Ép khối chữ ký không bị cắt ngang hoặc đẩy sang trang */
+            .signature-block {
+                page-break-inside: avoid;
+            }
+
             /* CSS CHO PHẦN GHI CHÚ */
             .footnote {
-                margin-top: 20px; 
+                margin-top: 15px; 
                 font-size: 12pt; 
+                page-break-inside: avoid;
             }
             .footnote p {
                 text-indent: 0 !important; 
@@ -196,7 +219,7 @@
     <p class="bold" style="text-align: right; margin: 0 0 10px 0; font-size: 13pt;">Mẫu số 56</p>
 
     <!-- CỘT TIÊU ĐỀ TRÊN CÙNG -->
-    <table style="width: 100%; border: none; margin-bottom: 15px; border-spacing: 0;">
+    <table style="width: 100%; border: none; margin-bottom: 10px; border-spacing: 0;">
         <tr>
             <td style="width: 45%; text-align: center; vertical-align: top; padding-bottom: 2px;">
                 <p class="uppercase bold" style="margin: 0; font-size: 13pt; word-wrap: break-word; white-space: normal; line-height: 1.2;" id="p_tenCongTy_header"></p>
@@ -227,7 +250,7 @@
     
     <!-- NỘI DUNG CHÍNH -->
     <div class="content-body">
-        <p style="text-align: center; margin-bottom: 20px; text-indent: 0;"><span class="bold">Kính gửi:</span> Chi cục Hải quan khu vực II</p>
+        <p style="text-align: center; margin-bottom: 15px; text-indent: 0;"><span class="bold">Kính gửi:</span> Chi cục Hải quan khu vực II</p>
         
         <p>Căn cứ Khoản 01 Điều 41 Thông tư số 86/2026/TT-BTC ngày 30/06/2026 của Bộ Trưởng Bộ Tài chính quy định về quản lý thuế đối với hàng hóa xuất khẩu, nhập khẩu.</p>
         
@@ -235,7 +258,6 @@
         
         <p>Địa chỉ (đối với Công ty là địa chỉ ghi trên giấy chứng nhận đăng ký doanh nghiệp): <span id="p_diaChiDKDN"></span></p>
         
-        <!-- THAY ĐỔI Ở ĐÂY: DÙNG MỘT ID ĐỂ TỰ ĐỘNG CHUỖI -->
         <p id="p_thongTinLienHe">Địa chỉ liên hệ: </p>
         
         <p>Đề nghị Chi cục Hải quan khu vực/đơn vị Hải quan xác nhận hoàn thành nghĩa vụ nộp thuế cho: <span class="bold uppercase" id="p_tenDonViXacNhan"></span>, mã số thuế: <span class="bold" id="p_maSoThue"></span></p>
@@ -245,28 +267,31 @@
         <p>(Ghi rõ để giải thể, đóng mã số thuế, mục đích khác………)./.</p>
     </div>
     
-    <!-- PHẦN CHỮ KÝ VÀ NƠI NHẬN -->
-    <table style="width: 100%; border: none; margin-top: 40px;">
-        <tr>
-            <td style="width: 50%; vertical-align: top;">
-                <p class="bold" style="margin: 0; font-size: 12pt; font-style: italic;">Nơi nhận:</p>
-                <p style="margin: 0; font-size: 12pt;">- Như trên;</p>
-                <p style="margin: 0; font-size: 12pt;">- Lưu: VT,</p>
-            </td>
-            <td style="width: 50%; text-align: center; vertical-align: top;">
-                <p class="bold uppercase" style="margin: 0; font-size: 14pt; white-space: nowrap;">NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</p>
-                <p class="bold uppercase" style="margin: 0; font-size: 14pt;">(HOẶC NGƯỜI ĐƯỢC ỦY QUYỀN)</p>
-                <p class="bold uppercase" style="margin-top: 140px; font-size: 14pt;" id="p_nguoiDaiDien"></p>
-            </td>
-        </tr>
-    </table>
+    <!-- PHẦN CHỮ KÝ VÀ NƠI NHẬN (Cố định chung 1 block) -->
+    <div class="signature-block">
+        <table style="width: 100%; border: none; margin-top: 20px;">
+            <tr>
+                <td style="width: 50%; vertical-align: top;">
+                    <p class="bold" style="margin: 0; font-size: 12pt; font-style: italic;">Nơi nhận:</p>
+                    <p style="margin: 0; font-size: 12pt;">- Như trên;</p>
+                    <p style="margin: 0; font-size: 12pt;">- Lưu: VT,</p>
+                </td>
+                <td style="width: 50%; text-align: center; vertical-align: top;">
+                    <p class="bold uppercase" style="margin: 0; font-size: 14pt; white-space: nowrap;">NGƯỜI ĐẠI DIỆN THEO PHÁP LUẬT</p>
+                    <p class="bold uppercase" style="margin: 0; font-size: 14pt;">(HOẶC NGƯỜI ĐƯỢC ỦY QUYỀN)</p>
+                    <!-- Khoảng cách cho chữ ký đã được rút gọn để chống tràn -->
+                    <p class="bold uppercase" style="margin-top: 90px; font-size: 14pt;" id="p_nguoiDaiDien"></p>
+                </td>
+            </tr>
+        </table>
 
-    <!-- PHẦN GHI CHÚ -->
-    <div class="footnote">
-        <p><span class="bold" style="font-style: italic;">Ghi chú:</span></p>
-        <p>Hồ sơ Công ty gửi kèm:</p>
-        <p class="footnote-item">- Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng nhận ưu đãi đầu tư; Giấy chứng nhận đăng ký mã số thuế: bản chụp (có ký tên, đóng dấu của Công ty) hoặc bản sao nếu có;</p>
-        <p class="footnote-item">- Trường hợp xác nhận hoàn thành nghĩa vụ nộp thuế đối với Chi nhánh Công ty thì hồ sơ như nêu trên phải bao gồm của Công ty và Chi nhánh Công ty.</p>
+        <!-- PHẦN GHI CHÚ -->
+        <div class="footnote">
+            <p><span class="bold" style="font-style: italic;">Ghi chú:</span></p>
+            <p>Hồ sơ Công ty gửi kèm:</p>
+            <p class="footnote-item">- Giấy chứng nhận đăng ký doanh nghiệp/Giấy chứng nhận ưu đãi đầu tư; Giấy chứng nhận đăng ký mã số thuế: bản chụp (có ký tên, đóng dấu của Công ty) hoặc bản sao nếu có;</p>
+            <p class="footnote-item">- Trường hợp xác nhận hoàn thành nghĩa vụ nộp thuế đối với Chi nhánh Công ty thì hồ sơ như nêu trên phải bao gồm của Công ty và Chi nhánh Công ty.</p>
+        </div>
     </div>
 </div>
 
@@ -285,10 +310,7 @@
         let end = input.selectionEnd;
         let val = input.value;
         
-        // Tìm chữ cái đầu tiên của chuỗi hoặc chữ cái nằm ngay sau khoảng trắng để viết hoa
         input.value = val.replace(/(?:^|\s)\S/g, function(a) { return a.toUpperCase(); });
-        
-        // Giữ nguyên vị trí con trỏ chuột khi đang gõ
         input.setSelectionRange(start, end);
     }
 
@@ -327,7 +349,6 @@
             chuoiThongTin += " - Người nhận: " + nguoiNhanVal;
         }
         
-        // Xuất ra HTML đoạn hoàn chỉnh
         document.getElementById('p_thongTinLienHe').innerText = chuoiThongTin;
         // ------------------------------------------
 
